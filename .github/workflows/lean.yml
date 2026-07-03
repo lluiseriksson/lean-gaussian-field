@@ -15,7 +15,7 @@ jobs:
       - name: No Lean placeholders on main
         if: github.ref == 'refs/heads/main'
         run: |
-          if grep -R --include='*.lean' -nE '\b(sorry|admit)\b' .; then
+          if git grep -nE '\b(sorry|admit)\b' -- '*.lean'; then
             echo "Lean placeholder found on main"
             exit 1
           fi
