@@ -1,0 +1,64 @@
+# Mother-facing digest
+
+Date: 2026-07-03
+
+This digest records the current Lean names that the parent repository can
+consume without importing frontier branches.  It is a routing note, not a
+claim of continuum construction, Yang-Mills mass gap progress, or OS/Wightman
+reconstruction.
+
+## Import surface
+
+Parent import:
+
+```lean
+import Interfaces
+```
+
+The root module `Interfaces.lean` re-exports
+`LeanGaussianField.Interfaces`.  Public names are tracked in `INTERFACES.md`;
+changes to those names or types should be treated as interface changes.
+
+## Closed Lean facts on main
+
+| Name | File | What it supplies |
+| --- | --- | --- |
+| `GaussianField.GaussianVectorSpec.charExponent_zero_arg` | `LeanGaussianField/GaussianVector.lean` | The target characteristic exponent vanishes at the zero test vector. |
+| `GaussianField.GaussianVectorSpec.charExponent_zero_spec` | `LeanGaussianField/GaussianVector.lean` | The zero mean/covariance specification has identically zero exponent. |
+| `GaussianField.GaussianVectorSpec.diag_nonneg` | `LeanGaussianField/CovarianceBounds.lean` | Positive semidefinite covariance implies nonnegative diagonal entries. |
+| `GaussianField.GaussianVectorSpec.covariance_sq_le` | `LeanGaussianField/CovarianceBounds.lean` | Squared Cauchy-Schwarz control for covariance entries. |
+| `GaussianField.GaussianVectorSpec.abs_covariance_le` | `LeanGaussianField/CovarianceBounds.lean` | Absolute covariance control by diagonal square roots. |
+| `GaussianField.GaussianVectorSpec.std` | `LeanGaussianField/CovarianceBounds.lean` | Standard centered finite Gaussian specification data. |
+| `GaussianField.Pairing.weight_empty` | `LeanGaussianField/PairingLemmas.lean` | Empty Wick pairing has weight one. |
+| `GaussianField.Pairing.abs_weight_le_pow` | `LeanGaussianField/PairingLemmas.lean` | Pairing-weight bound from per-edge covariance bounds. |
+| `GaussianField.abs_weight_le_of_diag` | `LeanGaussianField/WickBound.lean` | Wick-weight bound from a uniform diagonal covariance bound. |
+| `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
+| `GaussianField.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
+| `GaussianField.charFun_realizationOneDim` | `LeanGaussianField/RealizationOneDim.lean` | One-dimensional Mathlib `gaussianReal` realization matches the target exponent. |
+| `GaussianField.exists_realization_fin_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law. |
+
+## Explicit hypotheses still carried by interfaces
+
+These are deliberate data fields on `main`, not hidden axioms:
+
+| Name | File | Hypothesis boundary |
+| --- | --- | --- |
+| `GaussianField.HasGaussianVectorLaw.characteristic_exponent_eq` | `LeanGaussianField/GaussianVector.lean` | A supplied characteristic function matches `spec.charExponent`. |
+| `GaussianField.HasGaussianVectorLaw.Uniqueness.eq_of_hasGaussianVectorLaw` | `LeanGaussianField/GaussianVector.lean` | Uniqueness of realized laws from the supplied Gaussian-law witness. |
+| `GaussianField.IsserlisInterface.isserlis` | `LeanGaussianField/Interfaces.lean` | Wick/Isserlis moment identity is supplied as interface data. |
+| `GaussianField.UniformMomentBoundInterface.coordinate_moment_le` | `LeanGaussianField/Interfaces.lean` | Coordinate moment bounds are supplied for each finite family. |
+| `GaussianField.LatticeCovarianceDecayInterface.decay` | `LeanGaussianField/Interfaces.lean` | Finite-lattice covariance decay is supplied as explicit data. |
+
+## Consumption notes
+
+- For small-field covariance bookkeeping, prefer
+  `GaussianVectorSpec.diag_nonneg`, `GaussianVectorSpec.abs_covariance_le`,
+  and `abs_weight_le_of_diag`.
+- For a test oracle on the standard specification, use
+  `abs_weight_std_le_one`.
+- For one-dimensional realization checks, use
+  `charFun_realizationOneDim` and `exists_realization_fin_one`.
+- For conditional parent interfaces, use `isserlis_formula`,
+  `uniform_coordinate_moment_bound`, and `lattice_covariance_decay` only with
+  their corresponding explicit interface witnesses.
+
