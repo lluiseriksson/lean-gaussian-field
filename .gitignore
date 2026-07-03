@@ -1,0 +1,11 @@
+/.lake/
+/build/
+/lake-packages/
+*.olean
+*.ilean
+*.trace
+*.c
+*.o
+*.so
+*.dll
+*.exe
