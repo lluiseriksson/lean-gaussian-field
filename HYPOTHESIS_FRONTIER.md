@@ -6,6 +6,8 @@ Branch: `main`
 
 - No `.lean` placeholders are present on `main`.
 - CI rejects `sorry` and `admit` in `.lean` files on `main`.
+- Statement-first obligations live on `frontier/M1` under
+  `LeanGaussianField/Frontier/` and are listed below.
 
 ## Explicit hypotheses carried by interfaces
 
@@ -25,24 +27,62 @@ Branch: `main`
   covariance decay is not yet proved in `main`; mass, amplitude, covariance,
   decay profile, and decay estimate are explicit data.
 
-## Closed facts on the M0 path
+## Closed facts on `main`
 
-- `GaussianField.GaussianVectorSpec.zero`: degenerate centered
-  finite-dimensional Gaussian specification with zero covariance.
-- `GaussianField.GaussianVectorSpec.charExponent_zero_arg`: the characteristic
-  exponent of any specification is zero at the origin.
-- `GaussianField.GaussianVectorSpec.charExponent_zero_spec`: the degenerate
-  zero specification has identically zero characteristic exponent.
+M0 layer (previous iteration):
+
+- `GaussianVectorSpec.zero`, `charExponent_zero_arg`, `charExponent_zero_spec`.
+
+Covariance layer (`CovarianceBounds.lean`):
+
+- `bilinForm`, `bilinForm_self`, `bilinForm_add_left`, `bilinForm_add_right`,
+  `bilinForm_single`, `quadraticForm_single_add_single`: bilinear expansion of
+  the covariance form on coordinate vectors.
+- `GaussianVectorSpec.diag_nonneg`: PSD forces a nonnegative diagonal.
+- `GaussianVectorSpec.covariance_sq_le`,
+  `GaussianVectorSpec.abs_covariance_le`: Cauchy-Schwarz — every covariance
+  entry is bounded by the diagonal (discriminant argument).
+- `GaussianVectorSpec.std`: the standard specification, with proved PSD.
+
+Pairing layer (`PairingLemmas.lean`):
+
+- `Pairing.ext`, `DecidableEq (Pairing ι)`, `Fintype (Pairing ι)`:
+  pairings form a finite type, so Wick sums over ALL pairings are `Finset`
+  sums with no auxiliary data.
+- `Pairing.two_mul_card_pairs`: double counting, `2 * #pairs = card ι`.
+- `Pairing.even_card`, `Pairing.isEmpty_of_odd_card`: parity obstruction.
+- `Pairing.empty`, `Pairing.weight_empty`: the empty pairing has weight 1.
+- `Pairing.abs_weight_eq`, `Pairing.abs_weight_le_pow`: Wick-weight bounds.
+
+Characteristic-exponent layer (`CharExponentFacts.lean`):
+
+- `charExponent_eq`, `charExponent_re`, `charExponent_im`,
+  `charExponent_re_nonpos`, `norm_exp_charExponent_le_one`: the target
+  characteristic function of any specification is bounded by one.
+
+M2 seed (`WickBound.lean`):
+
+- `abs_weight_le_of_diag`: |Wick weight| ≤ (sup diagonal)^{#pairs}, uniform in
+  the dimension.  `abs_weight_std_le_one` as consumer test.
+
+## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
+
+- `exists_gaussian_realization`: construction of the law from arbitrary PSD
+  covariance, via Mathlib `isGaussian_iff_gaussian_charFun` (see
+  MATHLIB_AUDIT.md).
+- `isserlis_of_realization`: Wick/Isserlis over `Fintype (Pairing ι)`.
+- `integral_prod_eq_zero_of_odd`: vanishing odd moments (consumer test).
+- `card_pairing_fin`: #pairings of 2n points = (2n-1)!!.
+- `massiveMatrix_posDef`, `massiveMatrix_isUnit`,
+  `massiveMatrix_inv_posSemidef`, `massiveMatrix_inv_decay`: massive lattice
+  free field; decay constants still existential — MUST become explicit
+  (A = m⁻², r = log(1 + m²/‖L‖)) before closing M3.
 
 ## Distance to the target
 
-The repository currently provides the parent-facing statement surface and
-honest conditional wrappers.  It does not yet prove the Gaussian primitives
-needed by `hRpoly`.  The next frontier branch should introduce compilable
-statement-first theorem files for:
-
-- construction of finite-dimensional Gaussian laws from arbitrary PSD
-  covariance;
-- Wick/Isserlis over `GaussianField.Pairing`;
-- Gaussian integration by parts and dimension-uniform moment constants;
-- finite-lattice massive free-field covariance and exponential decay.
+The dimension-uniform control chain diagonal → Cauchy-Schwarz → Wick-weight
+bound is now proved unconditionally.  What separates `main` from closing M1 is
+purely the analytic realization block (existence of the law and the
+differentiation-of-characteristic-function argument for Isserlis); the
+combinatorial side (finiteness of pairings, parity, counting up to the
+(2n-1)!! identity) is done or reduced to `card_pairing_fin`.
