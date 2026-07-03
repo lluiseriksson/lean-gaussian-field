@@ -86,3 +86,20 @@ purely the analytic realization block (existence of the law and the
 differentiation-of-characteristic-function argument for Isserlis); the
 combinatorial side (finiteness of pairings, parity, counting up to the
 (2n-1)!! identity) is done or reduced to `card_pairing_fin`.
+
+
+## Second push (2026-07-03, afternoon control pass) — pending-CI
+
+`RealizationOneDim.lean` (branch `push/m1b-realization-1d`):
+
+- `realizationOneDim`: every one-dimensional specification is realized by
+  Mathlib's `gaussianReal`, variance fed by `diag_nonneg` (proved this
+  morning, merged to `main`).
+- `charFun_realizationOneDim`: **the bridge to Mathlib's Gaussian** —
+  `charFun` of the realizing measure equals `exp (charExponent)` exactly
+  (via `charFun_gaussianReal` at the pin; see `MATHLIB_AUDIT.md`).
+- `exists_realization_fin_one`: smallest-case discharge of the M1
+  realization pattern. The general `exists_gaussian_realization`
+  (product measures + PSD square root) remains on `frontier/M1`.
+
+First measure-theoretic content of the repository.

@@ -5,3 +5,4 @@ import LeanGaussianField.PairingLemmas
 import LeanGaussianField.CharExponentFacts
 import LeanGaussianField.WickBound
 import LeanGaussianField.Interfaces
+import LeanGaussianField.RealizationOneDim
