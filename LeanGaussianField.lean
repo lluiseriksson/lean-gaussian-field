@@ -1,3 +1,7 @@
 import LeanGaussianField.GaussianVector
 import LeanGaussianField.Pairing
+import LeanGaussianField.CovarianceBounds
+import LeanGaussianField.PairingLemmas
+import LeanGaussianField.CharExponentFacts
+import LeanGaussianField.WickBound
 import LeanGaussianField.Interfaces
