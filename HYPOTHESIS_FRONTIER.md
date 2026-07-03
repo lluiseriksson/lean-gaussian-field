@@ -25,6 +25,15 @@ Branch: `main`
   covariance decay is not yet proved in `main`; mass, amplitude, covariance,
   decay profile, and decay estimate are explicit data.
 
+## Closed facts on the M0 path
+
+- `GaussianField.GaussianVectorSpec.zero`: degenerate centered
+  finite-dimensional Gaussian specification with zero covariance.
+- `GaussianField.GaussianVectorSpec.charExponent_zero_arg`: the characteristic
+  exponent of any specification is zero at the origin.
+- `GaussianField.GaussianVectorSpec.charExponent_zero_spec`: the degenerate
+  zero specification has identically zero characteristic exponent.
+
 ## Distance to the target
 
 The repository currently provides the parent-facing statement surface and

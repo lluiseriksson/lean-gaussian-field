@@ -44,6 +44,43 @@ noncomputable def charExponent (spec : GaussianVectorSpec ι) (t : ι → ℝ) :
   (((∑ i, t i * spec.mean i : ℝ) : ℂ) * Complex.I)
     - (((quadraticForm spec.covariance t : ℝ) : ℂ) / 2)
 
+/-- The degenerate centered Gaussian specification with zero covariance.
+
+Reference: Kallenberg, 2002, Theorem 5.3, p. 87, for the finite-dimensional
+characteristic-function convention used by the surrounding M0 interface.
+-/
+noncomputable def zero (ι : Type*) [Fintype ι] : GaussianVectorSpec ι where
+  mean := fun _ => 0
+  covariance := fun _ _ => 0
+  covariance_symm := by
+    intro i j
+    rfl
+  covariance_psd := by
+    intro t
+    simp [quadraticForm]
+
+/-- The characteristic exponent of any Gaussian specification is zero at the
+origin.
+
+Reference: Kallenberg, 2002, Theorem 5.3, p. 87, for characteristic functions
+as the finite-dimensional law identifier.
+-/
+@[simp]
+theorem charExponent_zero_arg (spec : GaussianVectorSpec ι) :
+    spec.charExponent (fun _ => 0) = 0 := by
+  simp [charExponent, quadraticForm]
+
+/-- The degenerate zero specification has identically zero characteristic
+exponent.
+
+Reference: Kallenberg, 2002, Theorem 5.3, p. 87, for the finite-dimensional
+characteristic-function convention used by the surrounding M0 interface.
+-/
+@[simp]
+theorem charExponent_zero_spec (t : ι → ℝ) :
+    (zero ι).charExponent t = 0 := by
+  simp [zero, charExponent, quadraticForm]
+
 end GaussianVectorSpec
 
 /-- A measure realizes a finite-dimensional Gaussian specification.
