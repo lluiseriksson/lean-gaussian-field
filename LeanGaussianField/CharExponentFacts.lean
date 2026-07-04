@@ -62,6 +62,18 @@ theorem norm_exp_charExponent_le_one (spec : GaussianVectorSpec ι)
       ≤ Real.exp 0 := Real.exp_le_exp.mpr (spec.charExponent_re_nonpos t)
     _ = 1 := Real.exp_zero
 
+/-- The target characteristic exponential is normalized at the zero test
+vector. -/
+@[simp] theorem exp_charExponent_zero_arg (spec : GaussianVectorSpec ι) :
+    Complex.exp (spec.charExponent fun _ => 0) = 1 := by
+  simp
+
+/-- The target characteristic exponential of the zero specification is
+identically one. -/
+@[simp] theorem exp_charExponent_zero_spec (t : ι → ℝ) :
+    Complex.exp ((GaussianVectorSpec.zero ι).charExponent t) = 1 := by
+  simp
+
 end GaussianVectorSpec
 
 end GaussianField
