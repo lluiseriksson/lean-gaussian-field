@@ -1,6 +1,6 @@
 # Mother-facing digest
 
-Date: 2026-07-03
+Date: 2026-07-04
 
 This digest records the current Lean names that the parent repository can
 consume without importing frontier branches.  It is a routing note, not a
@@ -34,6 +34,8 @@ changes to those names or types should be treated as interface changes.
 | `GaussianField.abs_weight_le_of_diag` | `LeanGaussianField/WickBound.lean` | Wick-weight bound from a uniform diagonal covariance bound. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
+| `GaussianField.GaussianVectorSpec.exp_charExponent_zero_arg` | `LeanGaussianField/CharExponentFacts.lean` | The target characteristic exponential is normalized at the zero test vector. |
+| `GaussianField.GaussianVectorSpec.exp_charExponent_zero_spec` | `LeanGaussianField/CharExponentFacts.lean` | The zero specification has identically one target characteristic exponential. |
 | `GaussianField.GaussianVectorSpec.charFun_realizationOneDim` | `LeanGaussianField/RealizationOneDim.lean` | One-dimensional Mathlib `gaussianReal` realization matches the target exponent. |
 | `GaussianField.GaussianVectorSpec.exists_realization_fin_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law. |
 
@@ -59,6 +61,9 @@ These are deliberate data fields on `main`, not hidden axioms:
 - For one-dimensional realization checks, use
   `GaussianVectorSpec.charFun_realizationOneDim` and
   `GaussianVectorSpec.exists_realization_fin_one`.
+- For characteristic-function normalization oracles, use
+  `GaussianVectorSpec.exp_charExponent_zero_arg` and
+  `GaussianVectorSpec.exp_charExponent_zero_spec`.
 - For conditional parent interfaces, use `isserlis_formula`,
   `uniform_coordinate_moment_bound`, and `lattice_covariance_decay` only with
   their corresponding explicit interface witnesses.
