@@ -33,9 +33,9 @@ changes to those names or types should be treated as interface changes.
 | `GaussianField.Pairing.abs_weight_le_pow` | `LeanGaussianField/PairingLemmas.lean` | Pairing-weight bound from per-edge covariance bounds. |
 | `GaussianField.abs_weight_le_of_diag` | `LeanGaussianField/WickBound.lean` | Wick-weight bound from a uniform diagonal covariance bound. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
-| `GaussianField.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
-| `GaussianField.charFun_realizationOneDim` | `LeanGaussianField/RealizationOneDim.lean` | One-dimensional Mathlib `gaussianReal` realization matches the target exponent. |
-| `GaussianField.exists_realization_fin_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law. |
+| `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
+| `GaussianField.GaussianVectorSpec.charFun_realizationOneDim` | `LeanGaussianField/RealizationOneDim.lean` | One-dimensional Mathlib `gaussianReal` realization matches the target exponent. |
+| `GaussianField.GaussianVectorSpec.exists_realization_fin_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law. |
 
 ## Explicit hypotheses still carried by interfaces
 
@@ -57,7 +57,8 @@ These are deliberate data fields on `main`, not hidden axioms:
 - For a test oracle on the standard specification, use
   `abs_weight_std_le_one`.
 - For one-dimensional realization checks, use
-  `charFun_realizationOneDim` and `exists_realization_fin_one`.
+  `GaussianVectorSpec.charFun_realizationOneDim` and
+  `GaussianVectorSpec.exists_realization_fin_one`.
 - For conditional parent interfaces, use `isserlis_formula`,
   `uniform_coordinate_moment_bound`, and `lattice_covariance_decay` only with
   their corresponding explicit interface witnesses.
