@@ -52,6 +52,7 @@ changes.
 | `GaussianField.GaussianVectorSpec.charFun_realizationOneDim_zero_spec` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional zero specification has identically one characteristic function. |
 | `GaussianField.GaussianVectorSpec.norm_charFun_realizationOneDim_zero_spec` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional zero specification has characteristic-function norm one. |
 | `GaussianField.GaussianVectorSpec.exists_realization_fin_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law. |
+| `GaussianField.GaussianVectorSpec.exists_realization_fin_one_norm_le_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law with the characteristic-function norm bound packaged. |
 
 ## Explicit hypotheses still carried by interfaces
 
@@ -82,6 +83,9 @@ These are deliberate data fields on `main`, not hidden axioms:
   `GaussianVectorSpec.charFun_realizationOneDim_zero_spec`,
   `GaussianVectorSpec.norm_charFun_realizationOneDim_zero_spec`, and
   `GaussianVectorSpec.exists_realization_fin_one`.
+- For consumers that need both the realized one-dimensional law and the
+  characteristic-function norm oracle in one witness, use
+  `GaussianVectorSpec.exists_realization_fin_one_norm_le_one`.
 - For characteristic-function normalization oracles, use
   `GaussianVectorSpec.exp_charExponent_zero_arg` and
   `GaussianVectorSpec.exp_charExponent_zero_spec`.

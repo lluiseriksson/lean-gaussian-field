@@ -118,5 +118,8 @@ combinatorial side (finiteness of pairings, parity, counting up to the
 - `exists_realization_fin_one`: smallest-case discharge of the M1
   realization pattern. The general `exists_gaussian_realization`
   (product measures + PSD square root) remains on `frontier/M1`.
+- `exists_realization_fin_one_norm_le_one`: same one-dimensional realized-law
+  witness with the characteristic-function identity and norm bound packaged
+  together for consumers.
 
 First measure-theoretic content of the repository.

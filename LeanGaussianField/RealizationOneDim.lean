@@ -115,6 +115,18 @@ theorem exists_realization_fin_one (spec : GaussianVectorSpec (Fin 1)) :
   ⟨spec.realizationOneDim, inferInstance,
     fun t => spec.charFun_realizationOneDim t⟩
 
+/-- Existence form with the consumer norm bound packaged alongside the
+characteristic-function identity. -/
+theorem exists_realization_fin_one_norm_le_one
+    (spec : GaussianVectorSpec (Fin 1)) :
+    ∃ μ : Measure ℝ, IsProbabilityMeasure μ ∧
+      (∀ t : Fin 1 → ℝ,
+        charFun μ (t 0) = Complex.exp (spec.charExponent t)) ∧
+      ∀ t : Fin 1 → ℝ, ‖charFun μ (t 0)‖ ≤ 1 := by
+  refine ⟨spec.realizationOneDim, inferInstance, ?_, ?_⟩
+  · exact fun t => spec.charFun_realizationOneDim t
+  · exact fun t => spec.norm_charFun_realizationOneDim_le_one t
+
 end GaussianVectorSpec
 
 end GaussianField
