@@ -1,5 +1,6 @@
 import LeanGaussianField.GaussianVector
 import LeanGaussianField.CovarianceBounds
+import LeanGaussianField.CharExponentFacts
 import Mathlib.Probability.Distributions.Gaussian.Real
 
 /-!
@@ -48,6 +49,14 @@ theorem charFun_realizationOneDim (spec : GaussianVectorSpec (Fin 1))
   simp only [charExponent, quadraticForm, Fin.sum_univ_one, NNReal.coe_mk]
   push_cast
   ring
+
+/-- Norm bound for the one-dimensional realized characteristic function,
+as a closed consumer oracle. -/
+theorem norm_charFun_realizationOneDim_le_one
+    (spec : GaussianVectorSpec (Fin 1)) (t : Fin 1 → ℝ) :
+    ‖charFun spec.realizationOneDim (t 0)‖ ≤ 1 := by
+  rw [spec.charFun_realizationOneDim t]
+  exact spec.norm_exp_charExponent_le_one t
 
 /-- Existence form: every one-dimensional Gaussian specification is realized
 by a probability measure on `ℝ` whose characteristic function is

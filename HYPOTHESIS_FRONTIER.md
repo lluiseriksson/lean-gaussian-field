@@ -104,6 +104,9 @@ combinatorial side (finiteness of pairings, parity, counting up to the
 - `charFun_realizationOneDim`: **the bridge to Mathlib's Gaussian** —
   `charFun` of the realizing measure equals `exp (charExponent)` exactly
   (via `charFun_gaussianReal` at the pin; see `MATHLIB_AUDIT.md`).
+- `norm_charFun_realizationOneDim_le_one`: norm bound for the realized
+  one-dimensional characteristic function, routed through the closed
+  exponent bound `norm_exp_charExponent_le_one`.
 - `exists_realization_fin_one`: smallest-case discharge of the M1
   realization pattern. The general `exists_gaussian_realization`
   (product measures + PSD square root) remains on `frontier/M1`.
