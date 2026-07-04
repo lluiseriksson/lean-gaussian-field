@@ -90,6 +90,21 @@ one-dimensional characteristic function. -/
     ‖charFun spec.realizationOneDim 0‖ = 1 := by
   simp
 
+/-- The realized one-dimensional characteristic function of the zero
+specification is identically one. -/
+@[simp] theorem charFun_realizationOneDim_zero_spec
+    (t : Fin 1 → ℝ) :
+    charFun (GaussianVectorSpec.zero (Fin 1)).realizationOneDim (t 0) = 1 := by
+  rw [charFun_realizationOneDim]
+  simp
+
+/-- Norm form of zero-specification normalization for the realized
+one-dimensional characteristic function. -/
+@[simp] theorem norm_charFun_realizationOneDim_zero_spec
+    (t : Fin 1 → ℝ) :
+    ‖charFun (GaussianVectorSpec.zero (Fin 1)).realizationOneDim (t 0)‖ = 1 := by
+  simp
+
 /-- Existence form: every one-dimensional Gaussian specification is realized
 by a probability measure on `ℝ` whose characteristic function is
 `exp (charExponent)`.  Smallest-case discharge of the M1 realization
