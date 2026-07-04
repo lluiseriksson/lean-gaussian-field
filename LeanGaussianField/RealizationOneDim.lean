@@ -74,6 +74,15 @@ theorem charFun_realizationOneDim_neg
   rw [spec.charFun_realizationOneDim (-t), spec.charFun_realizationOneDim t,
     spec.exp_charExponent_neg t]
 
+/-- Conjugate symmetry preserves the norm of the realized one-dimensional
+characteristic function. -/
+@[simp] theorem norm_charFun_realizationOneDim_neg
+    (spec : GaussianVectorSpec (Fin 1)) (t : Fin 1 → ℝ) :
+    ‖charFun spec.realizationOneDim ((-t) 0)‖
+      = ‖charFun spec.realizationOneDim (t 0)‖ := by
+  rw [spec.charFun_realizationOneDim_neg t]
+  simp
+
 /-- Norm form of zero-test-vector normalization for the realized
 one-dimensional characteristic function. -/
 @[simp] theorem norm_charFun_realizationOneDim_zero_arg
