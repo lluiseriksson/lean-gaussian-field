@@ -110,9 +110,11 @@ combinatorial side (finiteness of pairings, parity, counting up to the
 - `charFun_realizationOneDim_zero_arg`,
   `charFun_realizationOneDim_neg`,
   `norm_charFun_realizationOneDim_neg`,
-  `norm_charFun_realizationOneDim_zero_arg`: closed normalization and
+  `norm_charFun_realizationOneDim_zero_arg`,
+  `charFun_realizationOneDim_zero_spec`,
+  `norm_charFun_realizationOneDim_zero_spec`: closed normalization and
   conjugate-symmetry oracles for the realized one-dimensional characteristic
-  function.
+  function, including the realized zero-specification case.
 - `exists_realization_fin_one`: smallest-case discharge of the M1
   realization pattern. The general `exists_gaussian_realization`
   (product measures + PSD square root) remains on `frontier/M1`.
