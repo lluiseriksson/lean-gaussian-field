@@ -38,8 +38,11 @@ changes.
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
 | `GaussianField.GaussianVectorSpec.charExponent_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector conjugates the target characteristic exponent. |
 | `GaussianField.GaussianVectorSpec.exp_charExponent_neg` | `LeanGaussianField/CharExponentFacts.lean` | The target characteristic exponential has conjugate symmetry under negating the test vector. |
+| `GaussianField.GaussianVectorSpec.norm_exp_charExponent_neg` | `LeanGaussianField/CharExponentFacts.lean` | Conjugate symmetry preserves the norm of the target characteristic exponential. |
 | `GaussianField.GaussianVectorSpec.exp_charExponent_zero_arg` | `LeanGaussianField/CharExponentFacts.lean` | The target characteristic exponential is normalized at the zero test vector. |
 | `GaussianField.GaussianVectorSpec.exp_charExponent_zero_spec` | `LeanGaussianField/CharExponentFacts.lean` | The zero specification has identically one target characteristic exponential. |
+| `GaussianField.GaussianVectorSpec.norm_exp_charExponent_zero_arg` | `LeanGaussianField/CharExponentFacts.lean` | The zero-test-vector normalization also rewrites in norm form. |
+| `GaussianField.GaussianVectorSpec.norm_exp_charExponent_zero_spec` | `LeanGaussianField/CharExponentFacts.lean` | The zero-specification normalization also rewrites in norm form. |
 | `GaussianField.GaussianVectorSpec.charFun_realizationOneDim` | `LeanGaussianField/RealizationOneDim.lean` | One-dimensional Mathlib `gaussianReal` realization matches the target exponent. |
 | `GaussianField.GaussianVectorSpec.exists_realization_fin_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law. |
 
@@ -69,8 +72,12 @@ These are deliberate data fields on `main`, not hidden axioms:
   `GaussianVectorSpec.exp_charExponent_zero_arg` and
   `GaussianVectorSpec.exp_charExponent_zero_spec`.
 - For characteristic-function conjugate-symmetry oracles, use
-  `GaussianVectorSpec.charExponent_neg` and
-  `GaussianVectorSpec.exp_charExponent_neg`.
+  `GaussianVectorSpec.charExponent_neg`,
+  `GaussianVectorSpec.exp_charExponent_neg`, and
+  `GaussianVectorSpec.norm_exp_charExponent_neg`.
+- For norm-form normalization oracles, use
+  `GaussianVectorSpec.norm_exp_charExponent_zero_arg` and
+  `GaussianVectorSpec.norm_exp_charExponent_zero_spec`.
 - For conditional parent interfaces, use `isserlis_formula`,
   `uniform_coordinate_moment_bound`, and `lattice_covariance_decay` only with
   their corresponding explicit interface witnesses.

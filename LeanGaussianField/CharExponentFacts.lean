@@ -85,16 +85,35 @@ theorem exp_charExponent_neg (spec : GaussianVectorSpec ι) (t : ι → ℝ) :
   rw [charExponent_neg]
   simp
 
+/-- Conjugate symmetry preserves the norm of the target characteristic
+exponential. -/
+@[simp] theorem norm_exp_charExponent_neg (spec : GaussianVectorSpec ι)
+    (t : ι → ℝ) :
+    ‖Complex.exp (spec.charExponent (-t))‖
+      = ‖Complex.exp (spec.charExponent t)‖ := by
+  rw [exp_charExponent_neg]
+  simp
+
 /-- The target characteristic exponential is normalized at the zero test
 vector. -/
 @[simp] theorem exp_charExponent_zero_arg (spec : GaussianVectorSpec ι) :
     Complex.exp (spec.charExponent fun _ => 0) = 1 := by
   simp
 
+/-- Norm form of zero-test-vector normalization. -/
+@[simp] theorem norm_exp_charExponent_zero_arg (spec : GaussianVectorSpec ι) :
+    ‖Complex.exp (spec.charExponent fun _ => 0)‖ = 1 := by
+  simp
+
 /-- The target characteristic exponential of the zero specification is
 identically one. -/
 @[simp] theorem exp_charExponent_zero_spec (t : ι → ℝ) :
     Complex.exp ((GaussianVectorSpec.zero ι).charExponent t) = 1 := by
+  simp
+
+/-- Norm form of zero-specification normalization. -/
+@[simp] theorem norm_exp_charExponent_zero_spec (t : ι → ℝ) :
+    ‖Complex.exp ((GaussianVectorSpec.zero ι).charExponent t)‖ = 1 := by
   simp
 
 end GaussianVectorSpec
