@@ -47,6 +47,7 @@ changes.
 | `GaussianField.GaussianVectorSpec.norm_charFun_realizationOneDim_le_one` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional characteristic function has norm at most one. |
 | `GaussianField.GaussianVectorSpec.charFun_realizationOneDim_zero_arg` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional characteristic function is normalized at zero. |
 | `GaussianField.GaussianVectorSpec.charFun_realizationOneDim_neg` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional characteristic function has conjugate symmetry under test-vector negation. |
+| `GaussianField.GaussianVectorSpec.norm_charFun_realizationOneDim_neg` | `LeanGaussianField/RealizationOneDim.lean` | Conjugate symmetry preserves the norm of the realized one-dimensional characteristic function. |
 | `GaussianField.GaussianVectorSpec.norm_charFun_realizationOneDim_zero_arg` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional characteristic function has norm one at zero. |
 | `GaussianField.GaussianVectorSpec.exists_realization_fin_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law. |
 
@@ -74,6 +75,7 @@ These are deliberate data fields on `main`, not hidden axioms:
   `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`,
   `GaussianVectorSpec.charFun_realizationOneDim_zero_arg`,
   `GaussianVectorSpec.charFun_realizationOneDim_neg`,
+  `GaussianVectorSpec.norm_charFun_realizationOneDim_neg`,
   `GaussianVectorSpec.norm_charFun_realizationOneDim_zero_arg`, and
   `GaussianVectorSpec.exists_realization_fin_one`.
 - For characteristic-function normalization oracles, use

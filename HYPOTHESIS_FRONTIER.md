@@ -109,6 +109,7 @@ combinatorial side (finiteness of pairings, parity, counting up to the
   exponent bound `norm_exp_charExponent_le_one`.
 - `charFun_realizationOneDim_zero_arg`,
   `charFun_realizationOneDim_neg`,
+  `norm_charFun_realizationOneDim_neg`,
   `norm_charFun_realizationOneDim_zero_arg`: closed normalization and
   conjugate-symmetry oracles for the realized one-dimensional characteristic
   function.
