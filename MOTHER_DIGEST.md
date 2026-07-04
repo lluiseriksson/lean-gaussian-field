@@ -61,4 +61,3 @@ These are deliberate data fields on `main`, not hidden axioms:
 - For conditional parent interfaces, use `isserlis_formula`,
   `uniform_coordinate_moment_bound`, and `lattice_covariance_decay` only with
   their corresponding explicit interface witnesses.
-
