@@ -45,6 +45,9 @@ changes.
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_zero_spec` | `LeanGaussianField/CharExponentFacts.lean` | The zero-specification normalization also rewrites in norm form. |
 | `GaussianField.GaussianVectorSpec.charFun_realizationOneDim` | `LeanGaussianField/RealizationOneDim.lean` | One-dimensional Mathlib `gaussianReal` realization matches the target exponent. |
 | `GaussianField.GaussianVectorSpec.norm_charFun_realizationOneDim_le_one` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional characteristic function has norm at most one. |
+| `GaussianField.GaussianVectorSpec.charFun_realizationOneDim_zero_arg` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional characteristic function is normalized at zero. |
+| `GaussianField.GaussianVectorSpec.charFun_realizationOneDim_neg` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional characteristic function has conjugate symmetry under test-vector negation. |
+| `GaussianField.GaussianVectorSpec.norm_charFun_realizationOneDim_zero_arg` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional characteristic function has norm one at zero. |
 | `GaussianField.GaussianVectorSpec.exists_realization_fin_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law. |
 
 ## Explicit hypotheses still carried by interfaces
@@ -68,7 +71,10 @@ These are deliberate data fields on `main`, not hidden axioms:
   `abs_weight_std_le_one`.
 - For one-dimensional realization checks, use
   `GaussianVectorSpec.charFun_realizationOneDim`,
-  `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`, and
+  `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`,
+  `GaussianVectorSpec.charFun_realizationOneDim_zero_arg`,
+  `GaussianVectorSpec.charFun_realizationOneDim_neg`,
+  `GaussianVectorSpec.norm_charFun_realizationOneDim_zero_arg`, and
   `GaussianVectorSpec.exists_realization_fin_one`.
 - For characteristic-function normalization oracles, use
   `GaussianVectorSpec.exp_charExponent_zero_arg` and
