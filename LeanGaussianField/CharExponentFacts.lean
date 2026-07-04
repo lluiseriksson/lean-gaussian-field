@@ -18,9 +18,18 @@ open scoped BigOperators
 
 namespace GaussianField
 
-namespace GaussianVectorSpec
-
 variable {ι : Type*} [Fintype ι]
+
+/-- Negating the test vector leaves the covariance quadratic form unchanged. -/
+@[simp] theorem quadraticForm_neg (C : ι → ι → ℝ) (t : ι → ℝ) :
+    quadraticForm C (-t) = quadraticForm C t := by
+  unfold quadraticForm
+  refine Finset.sum_congr rfl fun i _ => ?_
+  refine Finset.sum_congr rfl fun j _ => ?_
+  simp only [Pi.neg_apply]
+  ring
+
+namespace GaussianVectorSpec
 
 /-- Normal form of the characteristic exponent. -/
 theorem charExponent_eq (spec : GaussianVectorSpec ι) (t : ι → ℝ) :
@@ -61,6 +70,20 @@ theorem norm_exp_charExponent_le_one (spec : GaussianVectorSpec ι)
   calc Real.exp (spec.charExponent t).re
       ≤ Real.exp 0 := Real.exp_le_exp.mpr (spec.charExponent_re_nonpos t)
     _ = 1 := Real.exp_zero
+
+/-- Negating the test vector conjugates the target characteristic exponent. -/
+theorem charExponent_neg (spec : GaussianVectorSpec ι) (t : ι → ℝ) :
+    spec.charExponent (-t) = star (spec.charExponent t) := by
+  rw [charExponent_eq, charExponent_eq]
+  simp [quadraticForm_neg]
+
+/-- The target characteristic exponential has the expected conjugate symmetry
+under negating the test vector. -/
+theorem exp_charExponent_neg (spec : GaussianVectorSpec ι) (t : ι → ℝ) :
+    Complex.exp (spec.charExponent (-t))
+      = star (Complex.exp (spec.charExponent t)) := by
+  rw [charExponent_neg]
+  simp
 
 /-- The target characteristic exponential is normalized at the zero test
 vector. -/

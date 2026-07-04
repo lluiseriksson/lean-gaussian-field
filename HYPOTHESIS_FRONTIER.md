@@ -56,11 +56,14 @@ Pairing layer (`PairingLemmas.lean`):
 
 Characteristic-exponent layer (`CharExponentFacts.lean`):
 
-- `charExponent_eq`, `charExponent_re`, `charExponent_im`,
-  `charExponent_re_nonpos`, `norm_exp_charExponent_le_one`,
-  `exp_charExponent_zero_arg`, `exp_charExponent_zero_spec`: the target
-  characteristic exponential of any specification is bounded by one, and the
-  zero-argument / zero-spec normalization oracles reduce to one.
+- `quadraticForm_neg`, `charExponent_eq`, `charExponent_re`,
+  `charExponent_im`, `charExponent_re_nonpos`,
+  `norm_exp_charExponent_le_one`, `charExponent_neg`,
+  `exp_charExponent_neg`, `exp_charExponent_zero_arg`,
+  `exp_charExponent_zero_spec`: the target characteristic exponential of any
+  specification is bounded by one, has conjugate symmetry under test-vector
+  negation, and the zero-argument / zero-spec normalization oracles reduce to
+  one.
 
 M2 seed (`WickBound.lean`):
 

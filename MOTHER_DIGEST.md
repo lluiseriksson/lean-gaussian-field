@@ -34,7 +34,10 @@ changes.
 | `GaussianField.Pairing.abs_weight_le_pow` | `LeanGaussianField/PairingLemmas.lean` | Pairing-weight bound from per-edge covariance bounds. |
 | `GaussianField.abs_weight_le_of_diag` | `LeanGaussianField/WickBound.lean` | Wick-weight bound from a uniform diagonal covariance bound. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
+| `GaussianField.quadraticForm_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector leaves the covariance quadratic form unchanged. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
+| `GaussianField.GaussianVectorSpec.charExponent_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector conjugates the target characteristic exponent. |
+| `GaussianField.GaussianVectorSpec.exp_charExponent_neg` | `LeanGaussianField/CharExponentFacts.lean` | The target characteristic exponential has conjugate symmetry under negating the test vector. |
 | `GaussianField.GaussianVectorSpec.exp_charExponent_zero_arg` | `LeanGaussianField/CharExponentFacts.lean` | The target characteristic exponential is normalized at the zero test vector. |
 | `GaussianField.GaussianVectorSpec.exp_charExponent_zero_spec` | `LeanGaussianField/CharExponentFacts.lean` | The zero specification has identically one target characteristic exponential. |
 | `GaussianField.GaussianVectorSpec.charFun_realizationOneDim` | `LeanGaussianField/RealizationOneDim.lean` | One-dimensional Mathlib `gaussianReal` realization matches the target exponent. |
@@ -65,6 +68,9 @@ These are deliberate data fields on `main`, not hidden axioms:
 - For characteristic-function normalization oracles, use
   `GaussianVectorSpec.exp_charExponent_zero_arg` and
   `GaussianVectorSpec.exp_charExponent_zero_spec`.
+- For characteristic-function conjugate-symmetry oracles, use
+  `GaussianVectorSpec.charExponent_neg` and
+  `GaussianVectorSpec.exp_charExponent_neg`.
 - For conditional parent interfaces, use `isserlis_formula`,
   `uniform_coordinate_moment_bound`, and `lattice_covariance_decay` only with
   their corresponding explicit interface witnesses.
