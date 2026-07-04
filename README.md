@@ -38,4 +38,6 @@ import Interfaces
 ```
 
 See `INTERFACES.md` for exact names and `HYPOTHESIS_FRONTIER.md` for the
-current honest frontier.
+current honest frontier.  See `MOTHER_DIGEST.md` for a compact
+mother-facing routing note with exact theorem/API names, files, hypotheses,
+and suggested consumption points.
