@@ -15,9 +15,10 @@ Parent import:
 import Interfaces
 ```
 
-The root module `Interfaces.lean` re-exports
-`LeanGaussianField.Interfaces`.  Public names are tracked in `INTERFACES.md`;
-changes to those names or types should be treated as interface changes.
+The root module `Interfaces.lean` re-exports the closed fact modules below and
+the conditional interfaces.  Public interface names are tracked in
+`INTERFACES.md`; changes to those names or types should be treated as interface
+changes.
 
 ## Closed Lean facts on main
 
