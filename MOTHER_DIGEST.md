@@ -44,6 +44,7 @@ changes.
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_zero_arg` | `LeanGaussianField/CharExponentFacts.lean` | The zero-test-vector normalization also rewrites in norm form. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_zero_spec` | `LeanGaussianField/CharExponentFacts.lean` | The zero-specification normalization also rewrites in norm form. |
 | `GaussianField.GaussianVectorSpec.charFun_realizationOneDim` | `LeanGaussianField/RealizationOneDim.lean` | One-dimensional Mathlib `gaussianReal` realization matches the target exponent. |
+| `GaussianField.GaussianVectorSpec.norm_charFun_realizationOneDim_le_one` | `LeanGaussianField/RealizationOneDim.lean` | The realized one-dimensional characteristic function has norm at most one. |
 | `GaussianField.GaussianVectorSpec.exists_realization_fin_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law. |
 
 ## Explicit hypotheses still carried by interfaces
@@ -66,7 +67,8 @@ These are deliberate data fields on `main`, not hidden axioms:
 - For a test oracle on the standard specification, use
   `abs_weight_std_le_one`.
 - For one-dimensional realization checks, use
-  `GaussianVectorSpec.charFun_realizationOneDim` and
+  `GaussianVectorSpec.charFun_realizationOneDim`,
+  `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`, and
   `GaussianVectorSpec.exists_realization_fin_one`.
 - For characteristic-function normalization oracles, use
   `GaussianVectorSpec.exp_charExponent_zero_arg` and
