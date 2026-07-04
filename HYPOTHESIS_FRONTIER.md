@@ -121,5 +121,8 @@ combinatorial side (finiteness of pairings, parity, counting up to the
 - `exists_realization_fin_one_norm_le_one`: same one-dimensional realized-law
   witness with the characteristic-function identity and norm bound packaged
   together for consumers.
+- `exists_realization_fin_one_normalized_norm_le_one`: same one-dimensional
+  witness with zero normalization, characteristic-function identity, and norm
+  bound packaged together for consumers.
 
 First measure-theoretic content of the repository.
