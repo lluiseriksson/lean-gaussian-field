@@ -6,6 +6,10 @@ The parent repository should import:
 import Interfaces
 ```
 
+This compatibility barrel re-exports the closed fact modules listed in
+`MOTHER_DIGEST.md`, so those facts are available from the same parent import.
+The conditional interface names below remain the stable parent-facing API.
+
 Breaking changes are any changes to the names or types below.
 
 ## Finite-dimensional Gaussian law
