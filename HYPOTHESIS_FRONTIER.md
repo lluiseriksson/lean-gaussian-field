@@ -59,11 +59,12 @@ Characteristic-exponent layer (`CharExponentFacts.lean`):
 - `quadraticForm_neg`, `charExponent_eq`, `charExponent_re`,
   `charExponent_im`, `charExponent_re_nonpos`,
   `norm_exp_charExponent_le_one`, `charExponent_neg`,
-  `exp_charExponent_neg`, `exp_charExponent_zero_arg`,
-  `exp_charExponent_zero_spec`: the target characteristic exponential of any
-  specification is bounded by one, has conjugate symmetry under test-vector
-  negation, and the zero-argument / zero-spec normalization oracles reduce to
-  one.
+  `exp_charExponent_neg`, `norm_exp_charExponent_neg`,
+  `exp_charExponent_zero_arg`, `exp_charExponent_zero_spec`,
+  `norm_exp_charExponent_zero_arg`, `norm_exp_charExponent_zero_spec`: the
+  target characteristic exponential of any specification is bounded by one,
+  has conjugate symmetry under test-vector negation, and the zero-argument /
+  zero-spec normalization oracles reduce to one, also in norm form.
 
 M2 seed (`WickBound.lean`):
 
