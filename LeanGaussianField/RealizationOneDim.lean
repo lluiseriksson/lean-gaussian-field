@@ -58,6 +58,29 @@ theorem norm_charFun_realizationOneDim_le_one
   rw [spec.charFun_realizationOneDim t]
   exact spec.norm_exp_charExponent_le_one t
 
+/-- The realized one-dimensional characteristic function is normalized at the
+zero test vector. -/
+@[simp] theorem charFun_realizationOneDim_zero_arg
+    (spec : GaussianVectorSpec (Fin 1)) :
+    charFun spec.realizationOneDim 0 = 1 := by
+  simp
+
+/-- The realized one-dimensional characteristic function has the expected
+conjugate symmetry under test-vector negation. -/
+theorem charFun_realizationOneDim_neg
+    (spec : GaussianVectorSpec (Fin 1)) (t : Fin 1 → ℝ) :
+    charFun spec.realizationOneDim ((-t) 0)
+      = star (charFun spec.realizationOneDim (t 0)) := by
+  rw [spec.charFun_realizationOneDim (-t), spec.charFun_realizationOneDim t,
+    spec.exp_charExponent_neg t]
+
+/-- Norm form of zero-test-vector normalization for the realized
+one-dimensional characteristic function. -/
+@[simp] theorem norm_charFun_realizationOneDim_zero_arg
+    (spec : GaussianVectorSpec (Fin 1)) :
+    ‖charFun spec.realizationOneDim 0‖ = 1 := by
+  simp
+
 /-- Existence form: every one-dimensional Gaussian specification is realized
 by a probability measure on `ℝ` whose characteristic function is
 `exp (charExponent)`.  Smallest-case discharge of the M1 realization
