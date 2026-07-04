@@ -141,6 +141,20 @@ theorem exists_realization_fin_one_normalized_norm_le_one
   · exact fun t => spec.charFun_realizationOneDim t
   · exact fun t => spec.norm_charFun_realizationOneDim_le_one t
 
+/-- Existence form for the degenerate one-dimensional zero specification:
+the realized probability measure has identically-one characteristic function,
+including zero normalization and norm-one forms. -/
+theorem exists_realization_fin_one_zero_spec_norm_one :
+    ∃ μ : Measure ℝ, IsProbabilityMeasure μ ∧
+      charFun μ 0 = 1 ∧
+      (∀ t : Fin 1 → ℝ, charFun μ (t 0) = 1) ∧
+      ∀ t : Fin 1 → ℝ, ‖charFun μ (t 0)‖ = 1 := by
+  refine ⟨(GaussianVectorSpec.zero (Fin 1)).realizationOneDim,
+    inferInstance, ?_, ?_, ?_⟩
+  · exact (GaussianVectorSpec.zero (Fin 1)).charFun_realizationOneDim_zero_arg
+  · exact fun t => charFun_realizationOneDim_zero_spec t
+  · exact fun t => norm_charFun_realizationOneDim_zero_spec t
+
 end GaussianVectorSpec
 
 end GaussianField
