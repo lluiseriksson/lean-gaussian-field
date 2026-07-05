@@ -82,6 +82,16 @@ theorem weight_std_eq_one_of_pairs_empty (P : Pairing ι)
     P.weight (GaussianVectorSpec.std ι).covariance = 1 := by
   simp [Pairing.weight, hP]
 
+/-- In the standard specification, a Wick weight is exactly the empty-pairing
+indicator. -/
+theorem weight_std_eq_if_pairs_empty (P : Pairing ι) :
+    P.weight (GaussianVectorSpec.std ι).covariance =
+      if P.pairs = ∅ then 1 else 0 := by
+  by_cases hP : P.pairs = ∅
+  · simp [hP, weight_std_eq_one_of_pairs_empty P hP]
+  · have hne : P.pairs.Nonempty := Finset.nonempty_iff_ne_empty.mpr hP
+    simp [hP, weight_std_eq_zero_of_nonempty P hne]
+
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
 theorem abs_weight_std_le_one (P : Pairing ι) :
