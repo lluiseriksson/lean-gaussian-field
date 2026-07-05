@@ -122,6 +122,25 @@ theorem abs_covariance_le (spec : GaussianVectorSpec ι) (i j : ι) :
   rw [h1, ← Real.sqrt_mul (spec.diag_nonneg i)]
   exact Real.sqrt_le_sqrt h
 
+/-- If a PSD covariance has a zero diagonal entry, every covariance entry in
+the corresponding row is zero. -/
+theorem covariance_eq_zero_of_diag_left (spec : GaussianVectorSpec ι) (i j : ι)
+    (hii : spec.covariance i i = 0) :
+    spec.covariance i j = 0 := by
+  have hsq := spec.covariance_sq_le i j
+  have hsq_nonpos : spec.covariance i j ^ 2 ≤ 0 := by
+    simpa [hii] using hsq
+  nlinarith [sq_nonneg (spec.covariance i j)]
+
+/-- If a PSD covariance has a zero diagonal entry, every covariance entry in
+the corresponding column is zero. -/
+theorem covariance_eq_zero_of_diag_right (spec : GaussianVectorSpec ι) (i j : ι)
+    (hjj : spec.covariance j j = 0) :
+    spec.covariance i j = 0 := by
+  calc
+    spec.covariance i j = spec.covariance j i := spec.covariance_symm i j
+    _ = 0 := spec.covariance_eq_zero_of_diag_left j i hjj
+
 end GaussianVectorSpec
 
 /-- The standard Gaussian specification: zero mean, identity covariance. -/

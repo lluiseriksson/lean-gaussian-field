@@ -42,6 +42,10 @@ Covariance layer (`CovarianceBounds.lean`):
 - `GaussianVectorSpec.covariance_sq_le`,
   `GaussianVectorSpec.abs_covariance_le`: Cauchy-Schwarz — every covariance
   entry is bounded by the diagonal (discriminant argument).
+- `GaussianVectorSpec.covariance_eq_zero_of_diag_left`,
+  `GaussianVectorSpec.covariance_eq_zero_of_diag_right`: if a PSD covariance
+  has zero diagonal at an index, every row/column entry through that index
+  vanishes.
 - `GaussianVectorSpec.std`: the standard specification, with proved PSD.
 
 Pairing layer (`PairingLemmas.lean`):
