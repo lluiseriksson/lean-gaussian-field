@@ -124,5 +124,8 @@ combinatorial side (finiteness of pairings, parity, counting up to the
 - `exists_realization_fin_one_normalized_norm_le_one`: same one-dimensional
   witness with zero normalization, characteristic-function identity, and norm
   bound packaged together for consumers.
+- `exists_realization_fin_one_zero_spec_norm_one`: degenerate
+  one-dimensional zero-specification witness with identically-one
+  characteristic function and norm-one forms packaged together.
 
 First measure-theoretic content of the repository.
