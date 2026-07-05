@@ -78,6 +78,8 @@ M2 seed (`WickBound.lean`):
   the dimension.  `abs_weight_std_le_one` as consumer test.
 - `weight_eq_zero_of_diag_left`, `weight_eq_zero_of_diag_right`: if a paired
   endpoint has zero diagonal covariance, the full Wick weight vanishes.
+- `weight_std_eq_zero_of_mem`, `weight_std_eq_zero_of_nonempty`: in the
+  standard specification, any known edge/nonempty pairing has zero Wick weight.
 
 ## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
 

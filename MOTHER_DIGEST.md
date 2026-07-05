@@ -38,6 +38,8 @@ changes.
 | `GaussianField.abs_weight_le_of_diag` | `LeanGaussianField/WickBound.lean` | Wick-weight bound from a uniform diagonal covariance bound. |
 | `GaussianField.weight_eq_zero_of_diag_left` | `LeanGaussianField/WickBound.lean` | If a paired left endpoint has zero diagonal covariance, the associated Wick weight vanishes. |
 | `GaussianField.weight_eq_zero_of_diag_right` | `LeanGaussianField/WickBound.lean` | If a paired right endpoint has zero diagonal covariance, the associated Wick weight vanishes. |
+| `GaussianField.weight_std_eq_zero_of_mem` | `LeanGaussianField/WickBound.lean` | In the standard specification, a chosen pairing edge forces the full Wick weight to vanish. |
+| `GaussianField.weight_std_eq_zero_of_nonempty` | `LeanGaussianField/WickBound.lean` | In the standard specification, every nonempty pairing has zero Wick weight. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
 | `GaussianField.quadraticForm_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector leaves the covariance quadratic form unchanged. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
@@ -87,7 +89,9 @@ These are deliberate data fields on `main`, not hidden axioms:
   diagonal, use `weight_eq_zero_of_diag_left` or
   `weight_eq_zero_of_diag_right`.
 - For a test oracle on the standard specification, use
-  `abs_weight_std_le_one`.
+  `weight_std_eq_zero_of_mem` when a specific edge is known,
+  `weight_std_eq_zero_of_nonempty` when the pairing is known nonempty, and
+  `abs_weight_std_le_one` for the uniform absolute-value bound.
 - For one-dimensional realization checks, use
   `GaussianVectorSpec.charFun_realizationOneDim`,
   `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`,
