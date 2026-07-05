@@ -59,6 +59,23 @@ theorem weight_eq_zero_of_diag_right (spec : GaussianVectorSpec ι)
   exact P.weight_eq_zero_of_mem hp
     (spec.covariance_eq_zero_of_diag_right p.1 p.2 hdiag)
 
+/-- In the standard specification, any pairing edge has zero covariance
+factor, since pairing edges connect distinct indices. -/
+theorem weight_std_eq_zero_of_mem (P : Pairing ι) {p : ι × ι}
+    (hp : p ∈ P.pairs) :
+    P.weight (GaussianVectorSpec.std ι).covariance = 0 := by
+  exact P.weight_eq_zero_of_mem hp (by
+    have hne : p.1 ≠ p.2 := ne_of_lt (P.ordered p hp)
+    change (if p.1 = p.2 then (1 : ℝ) else 0) = 0
+    simp [hne])
+
+/-- A nonempty standard-specification pairing has zero Wick weight. -/
+theorem weight_std_eq_zero_of_nonempty (P : Pairing ι)
+    (hP : P.pairs.Nonempty) :
+    P.weight (GaussianVectorSpec.std ι).covariance = 0 := by
+  rcases hP with ⟨p, hp⟩
+  exact weight_std_eq_zero_of_mem P hp
+
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
 theorem abs_weight_std_le_one (P : Pairing ι) :
