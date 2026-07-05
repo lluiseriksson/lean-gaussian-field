@@ -56,6 +56,8 @@ Pairing layer (`PairingLemmas.lean`):
 - `Pairing.two_mul_card_pairs`: double counting, `2 * #pairs = card ι`.
 - `Pairing.even_card`, `Pairing.isEmpty_of_odd_card`: parity obstruction.
 - `Pairing.empty`, `Pairing.weight_empty`: the empty pairing has weight 1.
+- `Pairing.weight_eq_zero_of_mem`: a zero covariance factor on any pairing
+  edge forces the full Wick weight to vanish.
 - `Pairing.abs_weight_eq`, `Pairing.abs_weight_le_pow`: Wick-weight bounds.
 
 Characteristic-exponent layer (`CharExponentFacts.lean`):
@@ -74,6 +76,8 @@ M2 seed (`WickBound.lean`):
 
 - `abs_weight_le_of_diag`: |Wick weight| ≤ (sup diagonal)^{#pairs}, uniform in
   the dimension.  `abs_weight_std_le_one` as consumer test.
+- `weight_eq_zero_of_diag_left`, `weight_eq_zero_of_diag_right`: if a paired
+  endpoint has zero diagonal covariance, the full Wick weight vanishes.
 
 ## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
 

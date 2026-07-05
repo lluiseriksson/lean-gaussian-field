@@ -96,6 +96,12 @@ def empty (ι : Type*) [DecidableEq ι] [LinearOrder ι] [IsEmpty ι] :
     (empty ι).weight C = 1 := by
   simp [weight, empty]
 
+/-- If one edge factor is zero, the whole Wick weight is zero. -/
+theorem weight_eq_zero_of_mem (P : Pairing ι) {C : ι → ι → ℝ} {p : ι × ι}
+    (hp : p ∈ P.pairs) (hzero : C p.1 p.2 = 0) :
+    P.weight C = 0 := by
+  exact Finset.prod_eq_zero hp hzero
+
 /-- The absolute value of a Wick weight is the product of entry magnitudes. -/
 theorem abs_weight_eq (P : Pairing ι) (C : ι → ι → ℝ) :
     |P.weight C| = ∏ p ∈ P.pairs, |C p.1 p.2| := by
