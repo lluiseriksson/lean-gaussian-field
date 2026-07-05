@@ -41,6 +41,24 @@ theorem abs_weight_le_of_diag (spec : GaussianVectorSpec ι) (P : Pairing ι)
   have hBB : Real.sqrt B * Real.sqrt B = B := Real.mul_self_sqrt hB0
   linarith
 
+/-- If a paired left endpoint has zero diagonal covariance, the Wick weight
+vanishes. -/
+theorem weight_eq_zero_of_diag_left (spec : GaussianVectorSpec ι)
+    (P : Pairing ι) {p : ι × ι} (hp : p ∈ P.pairs)
+    (hdiag : spec.covariance p.1 p.1 = 0) :
+    P.weight spec.covariance = 0 := by
+  exact P.weight_eq_zero_of_mem hp
+    (spec.covariance_eq_zero_of_diag_left p.1 p.2 hdiag)
+
+/-- If a paired right endpoint has zero diagonal covariance, the Wick weight
+vanishes. -/
+theorem weight_eq_zero_of_diag_right (spec : GaussianVectorSpec ι)
+    (P : Pairing ι) {p : ι × ι} (hp : p ∈ P.pairs)
+    (hdiag : spec.covariance p.2 p.2 = 0) :
+    P.weight spec.covariance = 0 := by
+  exact P.weight_eq_zero_of_mem hp
+    (spec.covariance_eq_zero_of_diag_right p.1 p.2 hdiag)
+
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
 theorem abs_weight_std_le_one (P : Pairing ι) :
