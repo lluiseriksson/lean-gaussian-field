@@ -127,5 +127,8 @@ combinatorial side (finiteness of pairings, parity, counting up to the
 - `exists_realization_fin_one_zero_spec_norm_one`: degenerate
   one-dimensional zero-specification witness with identically-one
   characteristic function and norm-one forms packaged together.
+- `exists_realization_fin_one_zero_spec_symmetric_norm_one`: same degenerate
+  zero-specification witness, additionally packaging conjugate symmetry of the
+  realized characteristic function.
 
 First measure-theoretic content of the repository.

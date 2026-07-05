@@ -56,6 +56,7 @@ changes.
 | `GaussianField.GaussianVectorSpec.exists_realization_fin_one_normalized_norm_le_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law with zero normalization and the norm bound packaged. |
 | `GaussianField.GaussianVectorSpec.exists_realization_fin_one_normalized_symmetric_norm_le_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional realized law with zero normalization, conjugate symmetry, and the norm bound packaged. |
 | `GaussianField.GaussianVectorSpec.exists_realization_fin_one_zero_spec_norm_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional zero-specification realized law with identically-one characteristic function and norm-one forms packaged. |
+| `GaussianField.GaussianVectorSpec.exists_realization_fin_one_zero_spec_symmetric_norm_one` | `LeanGaussianField/RealizationOneDim.lean` | Existence of the one-dimensional zero-specification realized law with identically-one characteristic function, conjugate symmetry, and norm-one forms packaged. |
 
 ## Explicit hypotheses still carried by interfaces
 
@@ -96,6 +97,9 @@ These are deliberate data fields on `main`, not hidden axioms:
 - For the degenerate one-dimensional zero specification as a packaged
   consumer oracle, use
   `GaussianVectorSpec.exists_realization_fin_one_zero_spec_norm_one`.
+  If the same zero-specification witness should also carry conjugate symmetry,
+  use
+  `GaussianVectorSpec.exists_realization_fin_one_zero_spec_symmetric_norm_one`.
 - For characteristic-function normalization oracles, use
   `GaussianVectorSpec.exp_charExponent_zero_arg` and
   `GaussianVectorSpec.exp_charExponent_zero_spec`.
