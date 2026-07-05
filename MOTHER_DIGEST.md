@@ -1,6 +1,6 @@
 # Mother-facing digest
 
-Date: 2026-07-04
+Date: 2026-07-05
 
 This digest records the current Lean names that the parent repository can
 consume without importing frontier branches.  It is a routing note, not a
@@ -29,6 +29,8 @@ changes.
 | `GaussianField.GaussianVectorSpec.diag_nonneg` | `LeanGaussianField/CovarianceBounds.lean` | Positive semidefinite covariance implies nonnegative diagonal entries. |
 | `GaussianField.GaussianVectorSpec.covariance_sq_le` | `LeanGaussianField/CovarianceBounds.lean` | Squared Cauchy-Schwarz control for covariance entries. |
 | `GaussianField.GaussianVectorSpec.abs_covariance_le` | `LeanGaussianField/CovarianceBounds.lean` | Absolute covariance control by diagonal square roots. |
+| `GaussianField.GaussianVectorSpec.covariance_eq_zero_of_diag_left` | `LeanGaussianField/CovarianceBounds.lean` | If a PSD covariance has zero diagonal at `i`, all row entries `C i j` vanish. |
+| `GaussianField.GaussianVectorSpec.covariance_eq_zero_of_diag_right` | `LeanGaussianField/CovarianceBounds.lean` | If a PSD covariance has zero diagonal at `j`, all column entries `C i j` vanish. |
 | `GaussianField.GaussianVectorSpec.std` | `LeanGaussianField/CovarianceBounds.lean` | Standard centered finite Gaussian specification data. |
 | `GaussianField.Pairing.weight_empty` | `LeanGaussianField/PairingLemmas.lean` | Empty Wick pairing has weight one. |
 | `GaussianField.Pairing.abs_weight_le_pow` | `LeanGaussianField/PairingLemmas.lean` | Pairing-weight bound from per-edge covariance bounds. |
@@ -74,7 +76,9 @@ These are deliberate data fields on `main`, not hidden axioms:
 
 - For small-field covariance bookkeeping, prefer
   `GaussianVectorSpec.diag_nonneg`, `GaussianVectorSpec.abs_covariance_le`,
-  and `abs_weight_le_of_diag`.
+  `GaussianVectorSpec.covariance_eq_zero_of_diag_left`,
+  `GaussianVectorSpec.covariance_eq_zero_of_diag_right`, and
+  `abs_weight_le_of_diag`.
 - For a test oracle on the standard specification, use
   `abs_weight_std_le_one`.
 - For one-dimensional realization checks, use
