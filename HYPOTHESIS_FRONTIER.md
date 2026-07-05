@@ -84,6 +84,8 @@ M2 seed (`WickBound.lean`):
   pairing has Wick weight one.
 - `weight_std_eq_if_pairs_empty`: in the standard specification, the Wick
   weight is the empty-pairing indicator.
+- `weight_std_eq_zero_iff_pairs_nonempty`: in the standard specification,
+  zero Wick weight is equivalent to pairing nonemptiness.
 
 ## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
 
