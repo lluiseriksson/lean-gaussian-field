@@ -76,6 +76,12 @@ theorem weight_std_eq_zero_of_nonempty (P : Pairing ι)
   rcases hP with ⟨p, hp⟩
   exact weight_std_eq_zero_of_mem P hp
 
+/-- An empty standard-specification pairing has Wick weight one. -/
+theorem weight_std_eq_one_of_pairs_empty (P : Pairing ι)
+    (hP : P.pairs = ∅) :
+    P.weight (GaussianVectorSpec.std ι).covariance = 1 := by
+  simp [Pairing.weight, hP]
+
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
 theorem abs_weight_std_le_one (P : Pairing ι) :
