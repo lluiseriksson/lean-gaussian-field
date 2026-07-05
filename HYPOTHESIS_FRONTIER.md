@@ -80,6 +80,8 @@ M2 seed (`WickBound.lean`):
   endpoint has zero diagonal covariance, the full Wick weight vanishes.
 - `weight_std_eq_zero_of_mem`, `weight_std_eq_zero_of_nonempty`: in the
   standard specification, any known edge/nonempty pairing has zero Wick weight.
+- `weight_std_eq_one_of_pairs_empty`: in the standard specification, an empty
+  pairing has Wick weight one.
 
 ## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
 
