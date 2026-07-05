@@ -1,6 +1,6 @@
 # Mother-facing digest
 
-Date: 2026-07-05
+Date: 2026-07-06
 
 This digest records the current Lean names that the parent repository can
 consume without importing frontier branches.  It is a routing note, not a
@@ -33,6 +33,7 @@ changes.
 | `GaussianField.GaussianVectorSpec.covariance_eq_zero_of_diag_right` | `LeanGaussianField/CovarianceBounds.lean` | If a PSD covariance has zero diagonal at `j`, all column entries `C i j` vanish. |
 | `GaussianField.GaussianVectorSpec.std` | `LeanGaussianField/CovarianceBounds.lean` | Standard centered finite Gaussian specification data. |
 | `GaussianField.Pairing.weight_empty` | `LeanGaussianField/PairingLemmas.lean` | Empty Wick pairing has weight one. |
+| `GaussianField.Pairing.card_pairs_eq_card_div_two` | `LeanGaussianField/PairingLemmas.lean` | A pairing has exactly `Fintype.card ι / 2` edges. |
 | `GaussianField.Pairing.weight_eq_zero_of_mem` | `LeanGaussianField/PairingLemmas.lean` | Any zero covariance factor on a pairing edge forces the full Wick weight to vanish. |
 | `GaussianField.Pairing.abs_weight_le_pow` | `LeanGaussianField/PairingLemmas.lean` | Pairing-weight bound from per-edge covariance bounds. |
 | `GaussianField.abs_weight_le_of_diag` | `LeanGaussianField/WickBound.lean` | Wick-weight bound from a uniform diagonal covariance bound. |
@@ -91,6 +92,9 @@ These are deliberate data fields on `main`, not hidden axioms:
   `Pairing.weight_eq_zero_of_mem`; if the zero comes from a paired zero
   diagonal, use `weight_eq_zero_of_diag_left` or
   `weight_eq_zero_of_diag_right`.
+- For pairing cardinality normalization, use
+  `Pairing.card_pairs_eq_card_div_two` to rewrite the number of Wick edges as
+  half the number of indices.
 - For a test oracle on the standard specification, use
   `weight_std_eq_zero_of_mem` when a specific edge is known,
   `weight_std_eq_zero_of_nonempty` when the pairing is known nonempty,
