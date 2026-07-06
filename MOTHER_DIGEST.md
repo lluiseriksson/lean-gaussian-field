@@ -47,6 +47,7 @@ changes.
 | `GaussianField.weight_std_eq_zero_iff_pairs_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes exactly for nonempty pairings. |
 | `GaussianField.weight_std_eq_one_iff_pairs_empty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one exactly for empty pairings. |
 | `GaussianField.weight_std_eq_zero_iff_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes exactly when the index type is nonempty. |
+| `GaussianField.weight_std_eq_one_iff_not_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one exactly when the index type is empty. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
 | `GaussianField.quadraticForm_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector leaves the covariance quadratic form unchanged. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
@@ -109,8 +110,10 @@ These are deliberate data fields on `main`, not hidden axioms:
   pairing nonemptiness, `weight_std_eq_one_iff_pairs_empty` when a
   unit-weight standard Wick term should be converted back to pairing
   emptiness, and `weight_std_eq_zero_iff_nonempty` when the consumer wants
-  the equivalent index-type condition.  Use `abs_weight_std_le_one` for the
-  uniform absolute-value bound.
+  the equivalent nonempty index-type condition.  Use
+  `weight_std_eq_one_iff_not_nonempty` when a unit-weight standard Wick term
+  should be converted directly to emptiness of the index type.  Use
+  `abs_weight_std_le_one` for the uniform absolute-value bound.
 - For one-dimensional realization checks, use
   `GaussianVectorSpec.charFun_realizationOneDim`,
   `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`,
