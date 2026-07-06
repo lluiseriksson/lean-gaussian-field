@@ -65,6 +65,7 @@ changes.
 | `GaussianField.weight_std_eq_one_of_index_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one when `[IsEmpty ι]` is available. |
 | `GaussianField.weight_std_eq_one_iff_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one exactly when the index type carries an `IsEmpty` witness. |
 | `GaussianField.weight_std_ne_zero_iff_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is nonzero exactly when the index type carries an `IsEmpty` witness. |
+| `GaussianField.weight_std_ne_zero_iff_card_eq_zero` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is nonzero exactly when `Fintype.card ι = 0`. |
 | `GaussianField.abs_weight_std_eq_zero_iff_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight has magnitude zero exactly when the index type is nonempty. |
 | `GaussianField.abs_weight_std_eq_one_iff_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight has magnitude one exactly when the index type carries an `IsEmpty` witness. |
 | `GaussianField.abs_weight_std_eq_zero_of_index_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight has magnitude zero when `[Nonempty ι]` is available. |
@@ -163,8 +164,10 @@ These are deliberate data fields on `main`, not hidden axioms:
   `weight_std_eq_one_iff_isEmpty` when the consumer wants to exchange a
   unit-weight standard Wick term with an explicit `IsEmpty ι` witness.  Use
   `weight_std_ne_zero_iff_isEmpty` when the consumer tracks nonzero standard
-  Wick weights rather than the exact value `1`.  Use
-  `abs_weight_std_eq_zero_iff_nonempty` when the consumer tracks vanishing
+  Wick weights rather than the exact value `1`, or
+  `weight_std_ne_zero_iff_card_eq_zero` when that nonzero test should be
+  phrased as `Fintype.card ι = 0`.  Use `abs_weight_std_eq_zero_iff_nonempty`
+  when the consumer tracks vanishing
   absolute value and wants to detect nonempty index types.  Use
   `abs_weight_std_eq_one_iff_isEmpty` when the consumer tracks saturated
   absolute value rather than signed value.  Use
