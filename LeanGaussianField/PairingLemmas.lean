@@ -125,6 +125,18 @@ theorem card_pairs_eq_zero_iff_isEmpty [Fintype ι] (P : Pairing ι) :
     P.pairs.card = 0 ↔ IsEmpty ι := by
   rw [Finset.card_eq_zero, pairs_empty_iff_isEmpty]
 
+/-- A pairing has no edges exactly when the finite index type has cardinality
+zero. -/
+theorem pairs_empty_iff_card_eq_zero [Fintype ι] (P : Pairing ι) :
+    P.pairs = ∅ ↔ Fintype.card ι = 0 := by
+  rw [pairs_empty_iff_isEmpty, Fintype.card_eq_zero_iff]
+
+/-- A pairing has zero edge count exactly when the finite index type has
+cardinality zero. -/
+theorem card_pairs_eq_zero_iff_card_eq_zero [Fintype ι] (P : Pairing ι) :
+    P.pairs.card = 0 ↔ Fintype.card ι = 0 := by
+  rw [Finset.card_eq_zero, pairs_empty_iff_card_eq_zero]
+
 /-- Index types carrying a pairing have even cardinality. -/
 theorem even_card [Fintype ι] (P : Pairing ι) : Even (Fintype.card ι) := by
   have h := P.two_mul_card_pairs
