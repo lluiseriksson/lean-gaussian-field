@@ -54,6 +54,8 @@ Pairing layer (`PairingLemmas.lean`):
   pairings form a finite type, so Wick sums over ALL pairings are `Finset`
   sums with no auxiliary data.
 - `Pairing.two_mul_card_pairs`: double counting, `2 * #pairs = card ι`.
+- `Pairing.card_pairs_eq_card_div_two`: consumer-facing half-cardinality
+  rewrite, `#pairs = card ι / 2`.
 - `Pairing.even_card`, `Pairing.isEmpty_of_odd_card`: parity obstruction.
 - `Pairing.empty`, `Pairing.weight_empty`: the empty pairing has weight 1.
 - `Pairing.weight_eq_zero_of_mem`: a zero covariance factor on any pairing

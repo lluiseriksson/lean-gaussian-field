@@ -73,6 +73,12 @@ theorem two_mul_card_pairs [Fintype ι] (P : Pairing ι) :
     _ = ∑ _i : ι, 1 := Finset.sum_congr rfl fun i _ => hleft i
     _ = Fintype.card ι := by simp
 
+/-- A pairing has exactly half as many pairs as there are indices. -/
+theorem card_pairs_eq_card_div_two [Fintype ι] (P : Pairing ι) :
+    P.pairs.card = Fintype.card ι / 2 := by
+  have h := P.two_mul_card_pairs
+  omega
+
 /-- Index types carrying a pairing have even cardinality. -/
 theorem even_card [Fintype ι] (P : Pairing ι) : Even (Fintype.card ι) := by
   have h := P.two_mul_card_pairs
