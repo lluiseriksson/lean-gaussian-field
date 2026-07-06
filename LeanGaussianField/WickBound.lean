@@ -296,6 +296,37 @@ theorem abs_weight_std_eq_one_iff_card_eq_zero (P : Pairing ι) :
   · have hzero : Fintype.card ι = 0 := Nat.eq_zero_of_not_pos hcard
     simp [hzero]
 
+/-- In the standard specification, a Wick weight has nonzero magnitude exactly
+when the index type carries an `IsEmpty` witness. -/
+theorem abs_weight_std_ne_zero_iff_isEmpty (P : Pairing ι) :
+    |P.weight (GaussianVectorSpec.std ι).covariance| ≠ 0 ↔ IsEmpty ι := by
+  constructor
+  · intro hne
+    by_cases hι : Nonempty ι
+    · exact False.elim (hne ((abs_weight_std_eq_zero_iff_nonempty P).mpr hι))
+    · exact ⟨fun i => hι ⟨i⟩⟩
+  · intro hι hzero
+    have hone : |P.weight (GaussianVectorSpec.std ι).covariance| = 1 :=
+      (abs_weight_std_eq_one_iff_isEmpty P).mpr hι
+    rw [hzero] at hone
+    norm_num at hone
+
+/-- In the standard specification, a Wick weight has nonzero magnitude exactly
+when the finite index type has cardinality zero. -/
+theorem abs_weight_std_ne_zero_iff_card_eq_zero (P : Pairing ι) :
+    |P.weight (GaussianVectorSpec.std ι).covariance| ≠ 0 ↔
+      Fintype.card ι = 0 := by
+  constructor
+  · intro hne
+    apply Nat.eq_zero_of_not_pos
+    intro hcard
+    exact hne ((abs_weight_std_eq_zero_iff_card_pos P).mpr hcard)
+  · intro hcard hzero
+    have hone : |P.weight (GaussianVectorSpec.std ι).covariance| = 1 :=
+      (abs_weight_std_eq_one_iff_card_eq_zero P).mpr hcard
+    rw [hzero] at hone
+    norm_num at hone
+
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
 theorem abs_weight_std_le_one (P : Pairing ι) :

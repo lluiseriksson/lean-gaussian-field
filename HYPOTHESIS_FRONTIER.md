@@ -137,6 +137,10 @@ M2 seed (`WickBound.lean`):
   vanishes exactly at positive finite cardinality of the index type.
 - `abs_weight_std_eq_one_iff_card_eq_zero`: absolute standard Wick weight
   is one exactly at zero finite cardinality of the index type.
+- `abs_weight_std_ne_zero_iff_isEmpty`: absolute standard Wick weight is
+  nonzero exactly when the index type carries an `IsEmpty` witness.
+- `abs_weight_std_ne_zero_iff_card_eq_zero`: absolute standard Wick weight is
+  nonzero exactly at zero finite cardinality of the index type.
 - `abs_weight_std_le_one`: uniform absolute-value bound for standard Wick
   weights.
 
