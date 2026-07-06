@@ -194,6 +194,18 @@ theorem abs_weight_std_eq_one_iff_isEmpty (P : Pairing ι) :
     rw [hone]
     norm_num
 
+/-- In the standard specification, a Wick weight has magnitude zero on a
+nonempty index type. -/
+theorem abs_weight_std_eq_zero_of_index_nonempty (P : Pairing ι) [Nonempty ι] :
+    |P.weight (GaussianVectorSpec.std ι).covariance| = 0 :=
+  (abs_weight_std_eq_zero_iff_nonempty P).mpr inferInstance
+
+/-- In the standard specification, a Wick weight has magnitude one on an empty
+index type. -/
+theorem abs_weight_std_eq_one_of_index_isEmpty (P : Pairing ι) [IsEmpty ι] :
+    |P.weight (GaussianVectorSpec.std ι).covariance| = 1 :=
+  (abs_weight_std_eq_one_iff_isEmpty P).mpr inferInstance
+
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
 theorem abs_weight_std_le_one (P : Pairing ι) :

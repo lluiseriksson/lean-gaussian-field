@@ -114,6 +114,11 @@ M2 seed (`WickBound.lean`):
   absolute standard Wick weight and nonemptiness of the index type.
 - `abs_weight_std_eq_one_iff_isEmpty`: equivalence between saturated absolute
   standard Wick weight and an explicit `IsEmpty ι` witness.
+- `abs_weight_std_eq_zero_of_index_nonempty`,
+  `abs_weight_std_eq_one_of_index_isEmpty`: direct instance-based absolute
+  rewrites for standard Wick weights on nonempty and empty index types.
+- `abs_weight_std_le_one`: uniform absolute-value bound for standard Wick
+  weights.
 
 ## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
 
