@@ -79,6 +79,18 @@ theorem card_pairs_eq_card_div_two [Fintype ι] (P : Pairing ι) :
   have h := P.two_mul_card_pairs
   omega
 
+/-- A pairing has an edge exactly when the indexed type is nonempty. -/
+theorem pairs_nonempty_iff_nonempty [Fintype ι] (P : Pairing ι) :
+    P.pairs.Nonempty ↔ Nonempty ι := by
+  constructor
+  · rintro ⟨p, _hp⟩
+    exact ⟨p.1⟩
+  · rintro ⟨i⟩
+    by_contra hpairs
+    have hempty : P.pairs = ∅ := Finset.not_nonempty_iff_eq_empty.mp hpairs
+    have hcover := P.covers_once i
+    simp [hempty] at hcover
+
 /-- Index types carrying a pairing have even cardinality. -/
 theorem even_card [Fintype ι] (P : Pairing ι) : Even (Fintype.card ι) := by
   have h := P.two_mul_card_pairs

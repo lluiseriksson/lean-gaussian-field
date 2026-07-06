@@ -56,6 +56,8 @@ Pairing layer (`PairingLemmas.lean`):
 - `Pairing.two_mul_card_pairs`: double counting, `2 * #pairs = card ι`.
 - `Pairing.card_pairs_eq_card_div_two`: consumer-facing half-cardinality
   rewrite, `#pairs = card ι / 2`.
+- `Pairing.pairs_nonempty_iff_nonempty`: a pairing has an edge exactly when
+  the index type is nonempty.
 - `Pairing.even_card`, `Pairing.isEmpty_of_odd_card`: parity obstruction.
 - `Pairing.empty`, `Pairing.weight_empty`: the empty pairing has weight 1.
 - `Pairing.weight_eq_zero_of_mem`: a zero covariance factor on any pairing
@@ -88,6 +90,8 @@ M2 seed (`WickBound.lean`):
   weight is the empty-pairing indicator.
 - `weight_std_eq_zero_iff_pairs_nonempty`: in the standard specification,
   zero Wick weight is equivalent to pairing nonemptiness.
+- `weight_std_eq_zero_iff_nonempty`: in the standard specification, zero Wick
+  weight is equivalent to nonemptiness of the index type.
 
 ## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
 

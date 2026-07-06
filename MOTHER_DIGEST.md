@@ -34,6 +34,7 @@ changes.
 | `GaussianField.GaussianVectorSpec.std` | `LeanGaussianField/CovarianceBounds.lean` | Standard centered finite Gaussian specification data. |
 | `GaussianField.Pairing.weight_empty` | `LeanGaussianField/PairingLemmas.lean` | Empty Wick pairing has weight one. |
 | `GaussianField.Pairing.card_pairs_eq_card_div_two` | `LeanGaussianField/PairingLemmas.lean` | A pairing has exactly `Fintype.card ι / 2` edges. |
+| `GaussianField.Pairing.pairs_nonempty_iff_nonempty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has at least one edge exactly when the index type is nonempty. |
 | `GaussianField.Pairing.weight_eq_zero_of_mem` | `LeanGaussianField/PairingLemmas.lean` | Any zero covariance factor on a pairing edge forces the full Wick weight to vanish. |
 | `GaussianField.Pairing.abs_weight_le_pow` | `LeanGaussianField/PairingLemmas.lean` | Pairing-weight bound from per-edge covariance bounds. |
 | `GaussianField.abs_weight_le_of_diag` | `LeanGaussianField/WickBound.lean` | Wick-weight bound from a uniform diagonal covariance bound. |
@@ -44,6 +45,7 @@ changes.
 | `GaussianField.weight_std_eq_one_of_pairs_empty` | `LeanGaussianField/WickBound.lean` | In the standard specification, an empty pairing has Wick weight one. |
 | `GaussianField.weight_std_eq_if_pairs_empty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight as the empty-pairing indicator: `1` for empty pairings, `0` otherwise. |
 | `GaussianField.weight_std_eq_zero_iff_pairs_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes exactly for nonempty pairings. |
+| `GaussianField.weight_std_eq_zero_iff_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes exactly when the index type is nonempty. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
 | `GaussianField.quadraticForm_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector leaves the covariance quadratic form unchanged. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
@@ -94,7 +96,8 @@ These are deliberate data fields on `main`, not hidden axioms:
   `weight_eq_zero_of_diag_right`.
 - For pairing cardinality normalization, use
   `Pairing.card_pairs_eq_card_div_two` to rewrite the number of Wick edges as
-  half the number of indices.
+  half the number of indices.  Use `Pairing.pairs_nonempty_iff_nonempty` when
+  a consumer wants to replace pairing nonemptiness by index-type nonemptiness.
 - For a test oracle on the standard specification, use
   `weight_std_eq_zero_of_mem` when a specific edge is known,
   `weight_std_eq_zero_of_nonempty` when the pairing is known nonempty,
@@ -102,8 +105,9 @@ These are deliberate data fields on `main`, not hidden axioms:
   `weight_std_eq_if_pairs_empty` when the consumer wants the single
   empty/nonempty case split.  Use `weight_std_eq_zero_iff_pairs_nonempty`
   when a zero-weight standard Wick term should be converted back to
-  nonemptiness.  Use `abs_weight_std_le_one` for the uniform absolute-value
-  bound.
+  pairing nonemptiness, and `weight_std_eq_zero_iff_nonempty` when the
+  consumer wants the equivalent index-type condition.  Use
+  `abs_weight_std_le_one` for the uniform absolute-value bound.
 - For one-dimensional realization checks, use
   `GaussianVectorSpec.charFun_realizationOneDim`,
   `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`,
