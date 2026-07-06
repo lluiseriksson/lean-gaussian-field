@@ -109,6 +109,22 @@ theorem card_pairs_eq_zero_iff_not_nonempty [Fintype ι] (P : Pairing ι) :
     intro hpos
     exact hι ((card_pairs_pos_iff_nonempty P).mp hpos)
 
+/-- A pairing has no edges exactly when the indexed type is empty. -/
+theorem pairs_empty_iff_isEmpty [Fintype ι] (P : Pairing ι) :
+    P.pairs = ∅ ↔ IsEmpty ι := by
+  rw [← Finset.not_nonempty_iff_eq_empty]
+  constructor
+  · intro hP
+    exact ⟨fun i => hP ((pairs_nonempty_iff_nonempty P).mpr ⟨i⟩)⟩
+  · intro hι hP
+    rcases (pairs_nonempty_iff_nonempty P).mp hP with ⟨i⟩
+    exact hι.false i
+
+/-- A pairing has zero edge count exactly when the indexed type is empty. -/
+theorem card_pairs_eq_zero_iff_isEmpty [Fintype ι] (P : Pairing ι) :
+    P.pairs.card = 0 ↔ IsEmpty ι := by
+  rw [Finset.card_eq_zero, pairs_empty_iff_isEmpty]
+
 /-- Index types carrying a pairing have even cardinality. -/
 theorem even_card [Fintype ι] (P : Pairing ι) : Even (Fintype.card ι) := by
   have h := P.two_mul_card_pairs

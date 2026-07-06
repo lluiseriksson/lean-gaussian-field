@@ -61,6 +61,10 @@ Pairing layer (`PairingLemmas.lean`):
 - `Pairing.card_pairs_pos_iff_nonempty`,
   `Pairing.card_pairs_eq_zero_iff_not_nonempty`: cardinality-form rewrites for
   pairing nonemptiness and emptiness.
+- `Pairing.pairs_empty_iff_isEmpty`,
+  `Pairing.card_pairs_eq_zero_iff_isEmpty`: `IsEmpty`-witness forms of pairing
+  emptiness and zero edge count for consumers that work with empty-index
+  instances.
 - `Pairing.even_card`, `Pairing.isEmpty_of_odd_card`: parity obstruction.
 - `Pairing.empty`, `Pairing.weight_empty`: the empty pairing has weight 1.
 - `Pairing.weight_eq_zero_of_mem`: a zero covariance factor on any pairing
