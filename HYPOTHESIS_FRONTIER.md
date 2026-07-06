@@ -90,6 +90,8 @@ M2 seed (`WickBound.lean`):
   weight is the empty-pairing indicator.
 - `weight_std_eq_zero_iff_pairs_nonempty`: in the standard specification,
   zero Wick weight is equivalent to pairing nonemptiness.
+- `weight_std_eq_one_iff_pairs_empty`: in the standard specification, unit
+  Wick weight is equivalent to pairing emptiness.
 - `weight_std_eq_zero_iff_nonempty`: in the standard specification, zero Wick
   weight is equivalent to nonemptiness of the index type.
 

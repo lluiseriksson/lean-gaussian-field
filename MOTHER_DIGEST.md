@@ -45,6 +45,7 @@ changes.
 | `GaussianField.weight_std_eq_one_of_pairs_empty` | `LeanGaussianField/WickBound.lean` | In the standard specification, an empty pairing has Wick weight one. |
 | `GaussianField.weight_std_eq_if_pairs_empty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight as the empty-pairing indicator: `1` for empty pairings, `0` otherwise. |
 | `GaussianField.weight_std_eq_zero_iff_pairs_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes exactly for nonempty pairings. |
+| `GaussianField.weight_std_eq_one_iff_pairs_empty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one exactly for empty pairings. |
 | `GaussianField.weight_std_eq_zero_iff_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes exactly when the index type is nonempty. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
 | `GaussianField.quadraticForm_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector leaves the covariance quadratic form unchanged. |
@@ -105,9 +106,11 @@ These are deliberate data fields on `main`, not hidden axioms:
   `weight_std_eq_if_pairs_empty` when the consumer wants the single
   empty/nonempty case split.  Use `weight_std_eq_zero_iff_pairs_nonempty`
   when a zero-weight standard Wick term should be converted back to
-  pairing nonemptiness, and `weight_std_eq_zero_iff_nonempty` when the
-  consumer wants the equivalent index-type condition.  Use
-  `abs_weight_std_le_one` for the uniform absolute-value bound.
+  pairing nonemptiness, `weight_std_eq_one_iff_pairs_empty` when a
+  unit-weight standard Wick term should be converted back to pairing
+  emptiness, and `weight_std_eq_zero_iff_nonempty` when the consumer wants
+  the equivalent index-type condition.  Use `abs_weight_std_le_one` for the
+  uniform absolute-value bound.
 - For one-dimensional realization checks, use
   `GaussianVectorSpec.charFun_realizationOneDim`,
   `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`,
