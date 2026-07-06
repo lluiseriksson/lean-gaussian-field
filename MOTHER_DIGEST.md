@@ -43,6 +43,8 @@ changes.
 | `GaussianField.Pairing.card_pairs_eq_zero_iff_not_nonempty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has zero edges exactly when the index type is empty. |
 | `GaussianField.Pairing.pairs_empty_iff_isEmpty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has no edges exactly when the index type carries an `IsEmpty` witness. |
 | `GaussianField.Pairing.card_pairs_eq_zero_iff_isEmpty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has zero edge count exactly when the index type carries an `IsEmpty` witness. |
+| `GaussianField.Pairing.pairs_empty_iff_card_eq_zero` | `LeanGaussianField/PairingLemmas.lean` | A pairing has no edges exactly when `Fintype.card ι = 0`. |
+| `GaussianField.Pairing.card_pairs_eq_zero_iff_card_eq_zero` | `LeanGaussianField/PairingLemmas.lean` | A pairing has zero edge count exactly when `Fintype.card ι = 0`. |
 | `GaussianField.Pairing.weight_eq_zero_of_mem` | `LeanGaussianField/PairingLemmas.lean` | Any zero covariance factor on a pairing edge forces the full Wick weight to vanish. |
 | `GaussianField.Pairing.abs_weight_le_pow` | `LeanGaussianField/PairingLemmas.lean` | Pairing-weight bound from per-edge covariance bounds. |
 | `GaussianField.abs_weight_le_of_diag` | `LeanGaussianField/WickBound.lean` | Wick-weight bound from a uniform diagonal covariance bound. |
@@ -136,7 +138,10 @@ These are deliberate data fields on `main`, not hidden axioms:
   `Pairing.card_pairs_eq_zero_iff_not_nonempty` when the consumer works with
   `P.pairs.card` directly.  Use `Pairing.pairs_empty_iff_isEmpty` or
   `Pairing.card_pairs_eq_zero_iff_isEmpty` when the consumer already has an
-  `IsEmpty ι` witness or wants to produce one from pairing emptiness.
+  `IsEmpty ι` witness or wants to produce one from pairing emptiness.  Use
+  `Pairing.pairs_empty_iff_card_eq_zero` or
+  `Pairing.card_pairs_eq_zero_iff_card_eq_zero` when the consumer tracks
+  empty-index cases as `Fintype.card ι = 0`.
 - For a test oracle on the standard specification, use
   `weight_std_eq_zero_of_mem` when a specific edge is known,
   `weight_std_eq_zero_of_nonempty` when the pairing is known nonempty,
