@@ -109,6 +109,8 @@ M2 seed (`WickBound.lean`):
   weight is equivalent to nonemptiness of the index type.
 - `weight_std_eq_one_iff_not_nonempty`: in the standard specification, unit
   Wick weight is equivalent to emptiness of the index type.
+- `weight_std_eq_if_card_pos`: in the standard specification, Wick weight is
+  a direct positive-cardinality/empty indicator complement.
 - `weight_std_eq_zero_of_index_nonempty`,
   `weight_std_eq_one_of_index_isEmpty`: direct instance-based rewrites for
   standard Wick weights on nonempty and empty index types.
@@ -125,6 +127,8 @@ M2 seed (`WickBound.lean`):
 - `abs_weight_std_eq_zero_of_index_nonempty`,
   `abs_weight_std_eq_one_of_index_isEmpty`: direct instance-based absolute
   rewrites for standard Wick weights on nonempty and empty index types.
+- `abs_weight_std_eq_if_card_pos`: standard-specification Wick weight
+  magnitude as a direct positive-cardinality/empty indicator complement.
 - `abs_weight_std_le_one`: uniform absolute-value bound for standard Wick
   weights.
 
