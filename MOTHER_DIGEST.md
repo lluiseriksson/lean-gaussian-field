@@ -54,6 +54,7 @@ changes.
 | `GaussianField.weight_std_eq_one_iff_not_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one exactly when the index type is empty. |
 | `GaussianField.weight_std_eq_zero_of_index_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes when `[Nonempty ι]` is available. |
 | `GaussianField.weight_std_eq_one_of_index_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one when `[IsEmpty ι]` is available. |
+| `GaussianField.weight_std_eq_one_iff_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one exactly when the index type carries an `IsEmpty` witness. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
 | `GaussianField.quadraticForm_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector leaves the covariance quadratic form unchanged. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
@@ -127,6 +128,8 @@ These are deliberate data fields on `main`, not hidden axioms:
   `weight_std_eq_zero_of_index_nonempty` or
   `weight_std_eq_one_of_index_isEmpty` when the index-type instance is already
   in the local context and a direct rewrite is preferable.  Use
+  `weight_std_eq_one_iff_isEmpty` when the consumer wants to exchange a
+  unit-weight standard Wick term with an explicit `IsEmpty ι` witness.  Use
   `abs_weight_std_le_one` for the uniform absolute-value bound.
 - For one-dimensional realization checks, use
   `GaussianVectorSpec.charFun_realizationOneDim`,
