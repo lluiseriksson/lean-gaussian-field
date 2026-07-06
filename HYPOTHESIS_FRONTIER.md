@@ -47,6 +47,10 @@ Covariance layer (`CovarianceBounds.lean`):
   has zero diagonal at an index, every row/column entry through that index
   vanishes.
 - `GaussianVectorSpec.std`: the standard specification, with proved PSD.
+- `GaussianVectorSpec.std_mean`, `GaussianVectorSpec.std_covariance`,
+  `GaussianVectorSpec.std_covariance_self`,
+  `GaussianVectorSpec.std_covariance_of_ne`: direct rewrite oracles for the
+  centered identity-covariance fields of the standard specification.
 
 Pairing layer (`PairingLemmas.lean`):
 

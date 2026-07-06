@@ -32,6 +32,10 @@ changes.
 | `GaussianField.GaussianVectorSpec.covariance_eq_zero_of_diag_left` | `LeanGaussianField/CovarianceBounds.lean` | If a PSD covariance has zero diagonal at `i`, all row entries `C i j` vanish. |
 | `GaussianField.GaussianVectorSpec.covariance_eq_zero_of_diag_right` | `LeanGaussianField/CovarianceBounds.lean` | If a PSD covariance has zero diagonal at `j`, all column entries `C i j` vanish. |
 | `GaussianField.GaussianVectorSpec.std` | `LeanGaussianField/CovarianceBounds.lean` | Standard centered finite Gaussian specification data. |
+| `GaussianField.GaussianVectorSpec.std_mean` | `LeanGaussianField/CovarianceBounds.lean` | The standard specification is centered, exposed as a direct rewrite. |
+| `GaussianField.GaussianVectorSpec.std_covariance` | `LeanGaussianField/CovarianceBounds.lean` | Standard-spec covariance rewrites directly to the identity kernel. |
+| `GaussianField.GaussianVectorSpec.std_covariance_self` | `LeanGaussianField/CovarianceBounds.lean` | Standard-spec diagonal covariance rewrites to one. |
+| `GaussianField.GaussianVectorSpec.std_covariance_of_ne` | `LeanGaussianField/CovarianceBounds.lean` | Standard-spec off-diagonal covariance entries vanish from an inequality proof. |
 | `GaussianField.Pairing.weight_empty` | `LeanGaussianField/PairingLemmas.lean` | Empty Wick pairing has weight one. |
 | `GaussianField.Pairing.card_pairs_eq_card_div_two` | `LeanGaussianField/PairingLemmas.lean` | A pairing has exactly `Fintype.card ι / 2` edges. |
 | `GaussianField.Pairing.pairs_nonempty_iff_nonempty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has at least one edge exactly when the index type is nonempty. |
@@ -103,7 +107,11 @@ These are deliberate data fields on `main`, not hidden axioms:
   `GaussianVectorSpec.diag_nonneg`, `GaussianVectorSpec.abs_covariance_le`,
   `GaussianVectorSpec.covariance_eq_zero_of_diag_left`,
   `GaussianVectorSpec.covariance_eq_zero_of_diag_right`, and
-  `abs_weight_le_of_diag`.
+  `abs_weight_le_of_diag`.  For direct rewriting under the standard
+  specification, use `GaussianVectorSpec.std_mean`,
+  `GaussianVectorSpec.std_covariance`, `GaussianVectorSpec.std_covariance_self`,
+  and `GaussianVectorSpec.std_covariance_of_ne` instead of unfolding
+  `GaussianVectorSpec.std`.
 - For Wick terms containing a degenerate covariance edge, use
   `Pairing.weight_eq_zero_of_mem`; if the zero comes from a paired zero
   diagonal, use `weight_eq_zero_of_diag_left` or
