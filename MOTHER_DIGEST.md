@@ -35,6 +35,8 @@ changes.
 | `GaussianField.Pairing.weight_empty` | `LeanGaussianField/PairingLemmas.lean` | Empty Wick pairing has weight one. |
 | `GaussianField.Pairing.card_pairs_eq_card_div_two` | `LeanGaussianField/PairingLemmas.lean` | A pairing has exactly `Fintype.card ι / 2` edges. |
 | `GaussianField.Pairing.pairs_nonempty_iff_nonempty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has at least one edge exactly when the index type is nonempty. |
+| `GaussianField.Pairing.card_pairs_pos_iff_nonempty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has positive edge count exactly when the index type is nonempty. |
+| `GaussianField.Pairing.card_pairs_eq_zero_iff_not_nonempty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has zero edges exactly when the index type is empty. |
 | `GaussianField.Pairing.weight_eq_zero_of_mem` | `LeanGaussianField/PairingLemmas.lean` | Any zero covariance factor on a pairing edge forces the full Wick weight to vanish. |
 | `GaussianField.Pairing.abs_weight_le_pow` | `LeanGaussianField/PairingLemmas.lean` | Pairing-weight bound from per-edge covariance bounds. |
 | `GaussianField.abs_weight_le_of_diag` | `LeanGaussianField/WickBound.lean` | Wick-weight bound from a uniform diagonal covariance bound. |
@@ -102,6 +104,9 @@ These are deliberate data fields on `main`, not hidden axioms:
   `Pairing.card_pairs_eq_card_div_two` to rewrite the number of Wick edges as
   half the number of indices.  Use `Pairing.pairs_nonempty_iff_nonempty` when
   a consumer wants to replace pairing nonemptiness by index-type nonemptiness.
+  Use `Pairing.card_pairs_pos_iff_nonempty` or
+  `Pairing.card_pairs_eq_zero_iff_not_nonempty` when the consumer works with
+  `P.pairs.card` directly.
 - For a test oracle on the standard specification, use
   `weight_std_eq_zero_of_mem` when a specific edge is known,
   `weight_std_eq_zero_of_nonempty` when the pairing is known nonempty,
