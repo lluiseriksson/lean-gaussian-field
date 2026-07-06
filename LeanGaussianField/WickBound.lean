@@ -170,6 +170,24 @@ theorem weight_std_ne_zero_iff_isEmpty (P : Pairing ι) :
       (weight_std_eq_one_iff_isEmpty P).mpr hι
     linarith
 
+/-- In the standard specification, a Wick weight has magnitude one exactly
+when the index type carries an `IsEmpty` witness. -/
+theorem abs_weight_std_eq_one_iff_isEmpty (P : Pairing ι) :
+    |P.weight (GaussianVectorSpec.std ι).covariance| = 1 ↔ IsEmpty ι := by
+  constructor
+  · intro habs
+    by_cases hι : Nonempty ι
+    · have hzero : P.weight (GaussianVectorSpec.std ι).covariance = 0 :=
+        weight_std_eq_zero_of_index_nonempty P
+      rw [hzero] at habs
+      norm_num at habs
+    · exact ⟨fun i => hι ⟨i⟩⟩
+  · intro hι
+    have hone : P.weight (GaussianVectorSpec.std ι).covariance = 1 :=
+      (weight_std_eq_one_iff_isEmpty P).mpr hι
+    rw [hone]
+    norm_num
+
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
 theorem abs_weight_std_le_one (P : Pairing ι) :

@@ -56,6 +56,7 @@ changes.
 | `GaussianField.weight_std_eq_one_of_index_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one when `[IsEmpty ι]` is available. |
 | `GaussianField.weight_std_eq_one_iff_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one exactly when the index type carries an `IsEmpty` witness. |
 | `GaussianField.weight_std_ne_zero_iff_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is nonzero exactly when the index type carries an `IsEmpty` witness. |
+| `GaussianField.abs_weight_std_eq_one_iff_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight has magnitude one exactly when the index type carries an `IsEmpty` witness. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
 | `GaussianField.quadraticForm_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector leaves the covariance quadratic form unchanged. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
@@ -132,8 +133,10 @@ These are deliberate data fields on `main`, not hidden axioms:
   `weight_std_eq_one_iff_isEmpty` when the consumer wants to exchange a
   unit-weight standard Wick term with an explicit `IsEmpty ι` witness.  Use
   `weight_std_ne_zero_iff_isEmpty` when the consumer tracks nonzero standard
-  Wick weights rather than the exact value `1`.  Use `abs_weight_std_le_one`
-  for the uniform absolute-value bound.
+  Wick weights rather than the exact value `1`.  Use
+  `abs_weight_std_eq_one_iff_isEmpty` when the consumer tracks saturated
+  absolute value rather than signed value.  Use `abs_weight_std_le_one` for
+  the uniform absolute-value bound.
 - For one-dimensional realization checks, use
   `GaussianVectorSpec.charFun_realizationOneDim`,
   `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`,
