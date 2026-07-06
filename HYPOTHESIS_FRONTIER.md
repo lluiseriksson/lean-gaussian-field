@@ -122,6 +122,8 @@ M2 seed (`WickBound.lean`):
   weight and an explicit `IsEmpty ι` witness.
 - `weight_std_ne_zero_iff_isEmpty`: equivalence between nonzero standard Wick
   weight and an explicit `IsEmpty ι` witness.
+- `weight_std_ne_zero_iff_card_eq_zero`: equivalence between nonzero standard
+  Wick weight and zero finite index cardinality.
 - `abs_weight_std_eq_zero_iff_nonempty`: equivalence between vanishing
   absolute standard Wick weight and nonemptiness of the index type.
 - `abs_weight_std_eq_one_iff_isEmpty`: equivalence between saturated absolute
