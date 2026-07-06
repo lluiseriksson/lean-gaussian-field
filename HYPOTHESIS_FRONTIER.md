@@ -120,6 +120,8 @@ M2 seed (`WickBound.lean`):
   absolute standard Wick weight and nonemptiness of the index type.
 - `abs_weight_std_eq_one_iff_isEmpty`: equivalence between saturated absolute
   standard Wick weight and an explicit `IsEmpty ι` witness.
+- `abs_weight_std_eq_if_pairs_empty`: standard-specification Wick weight
+  magnitude as the empty-pairing indicator.
 - `abs_weight_std_eq_zero_of_index_nonempty`,
   `abs_weight_std_eq_one_of_index_isEmpty`: direct instance-based absolute
   rewrites for standard Wick weights on nonempty and empty index types.
