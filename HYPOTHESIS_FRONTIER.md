@@ -99,6 +99,8 @@ M2 seed (`WickBound.lean`):
   pairing has Wick weight one.
 - `weight_std_eq_if_pairs_empty`: in the standard specification, the Wick
   weight is the empty-pairing indicator.
+- `weight_std_nonneg`, `weight_std_le_one`: signed interval control for
+  standard-specification Wick weights.
 - `weight_std_eq_zero_iff_pairs_nonempty`: in the standard specification,
   zero Wick weight is equivalent to pairing nonemptiness.
 - `weight_std_eq_one_iff_pairs_empty`: in the standard specification, unit
