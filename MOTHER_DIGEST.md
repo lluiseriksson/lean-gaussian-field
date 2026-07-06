@@ -66,6 +66,7 @@ changes.
 | `GaussianField.abs_weight_std_eq_one_iff_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight has magnitude one exactly when the index type carries an `IsEmpty` witness. |
 | `GaussianField.abs_weight_std_eq_zero_of_index_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight has magnitude zero when `[Nonempty ι]` is available. |
 | `GaussianField.abs_weight_std_eq_one_of_index_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight has magnitude one when `[IsEmpty ι]` is available. |
+| `GaussianField.abs_weight_std_eq_if_pairs_empty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight magnitude as the empty-pairing indicator. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
 | `GaussianField.quadraticForm_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector leaves the covariance quadratic form unchanged. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
@@ -153,6 +154,8 @@ These are deliberate data fields on `main`, not hidden axioms:
   absolute value and wants to detect nonempty index types.  Use
   `abs_weight_std_eq_one_iff_isEmpty` when the consumer tracks saturated
   absolute value rather than signed value.  Use
+  `abs_weight_std_eq_if_pairs_empty` when the consumer wants one direct
+  empty/nonempty case split for the absolute standard Wick weight.  Use
   `abs_weight_std_eq_zero_of_index_nonempty` or
   `abs_weight_std_eq_one_of_index_isEmpty` when the relevant index-type
   instance is already in context and the consumer wants a direct absolute

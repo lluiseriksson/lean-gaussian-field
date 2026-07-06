@@ -206,6 +206,14 @@ theorem abs_weight_std_eq_one_iff_isEmpty (P : Pairing ι) :
     rw [hone]
     norm_num
 
+/-- In the standard specification, the absolute Wick weight is exactly the
+empty-pairing indicator. -/
+theorem abs_weight_std_eq_if_pairs_empty (P : Pairing ι) :
+    |P.weight (GaussianVectorSpec.std ι).covariance| =
+      if P.pairs = ∅ then 1 else 0 := by
+  rw [weight_std_eq_if_pairs_empty]
+  by_cases hP : P.pairs = ∅ <;> simp [hP]
+
 /-- In the standard specification, a Wick weight has magnitude zero on a
 nonempty index type. -/
 theorem abs_weight_std_eq_zero_of_index_nonempty (P : Pairing ι) [Nonempty ι] :
