@@ -94,6 +94,8 @@ M2 seed (`WickBound.lean`):
   Wick weight is equivalent to pairing emptiness.
 - `weight_std_eq_zero_iff_nonempty`: in the standard specification, zero Wick
   weight is equivalent to nonemptiness of the index type.
+- `weight_std_eq_one_iff_not_nonempty`: in the standard specification, unit
+  Wick weight is equivalent to emptiness of the index type.
 
 ## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
 
