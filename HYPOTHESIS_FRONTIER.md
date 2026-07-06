@@ -108,6 +108,8 @@ M2 seed (`WickBound.lean`):
   standard Wick weights on nonempty and empty index types.
 - `weight_std_eq_one_iff_isEmpty`: equivalence between unit standard Wick
   weight and an explicit `IsEmpty ι` witness.
+- `weight_std_ne_zero_iff_isEmpty`: equivalence between nonzero standard Wick
+  weight and an explicit `IsEmpty ι` witness.
 
 ## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
 
