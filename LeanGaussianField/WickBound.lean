@@ -105,6 +105,21 @@ theorem weight_std_eq_zero_iff_pairs_nonempty (P : Pairing ι) :
   · intro hP
     exact weight_std_eq_zero_of_nonempty P hP
 
+/-- In the standard specification, a Wick weight is one exactly for the
+empty pairing. -/
+theorem weight_std_eq_one_iff_pairs_empty (P : Pairing ι) :
+    P.weight (GaussianVectorSpec.std ι).covariance = 1 ↔ P.pairs = ∅ := by
+  constructor
+  · intro hone
+    by_contra hP
+    have hne : P.pairs.Nonempty := Finset.nonempty_iff_ne_empty.mpr hP
+    have hzero := weight_std_eq_zero_of_nonempty P hne
+    have : (0 : ℝ) = 1 := by
+      rw [← hzero, hone]
+    norm_num at this
+  · intro hP
+    exact weight_std_eq_one_of_pairs_empty P hP
+
 /-- In the standard specification, a Wick weight vanishes exactly when the
 index type is nonempty. -/
 theorem weight_std_eq_zero_iff_nonempty (P : Pairing ι) :
