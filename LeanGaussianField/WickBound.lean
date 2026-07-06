@@ -139,6 +139,19 @@ theorem weight_std_eq_one_iff_not_nonempty (P : Pairing ι) :
     exact Finset.not_nonempty_iff_eq_empty.mp fun hP =>
       hι ((Pairing.pairs_nonempty_iff_nonempty P).mp hP)
 
+/-- In the standard specification, a Wick weight on a nonempty index type
+vanishes. -/
+theorem weight_std_eq_zero_of_index_nonempty (P : Pairing ι) [Nonempty ι] :
+    P.weight (GaussianVectorSpec.std ι).covariance = 0 :=
+  (weight_std_eq_zero_iff_nonempty P).mpr inferInstance
+
+/-- In the standard specification, a Wick weight on an empty index type is
+one. -/
+theorem weight_std_eq_one_of_index_isEmpty (P : Pairing ι) [IsEmpty ι] :
+    P.weight (GaussianVectorSpec.std ι).covariance = 1 :=
+  (weight_std_eq_one_iff_not_nonempty P).mpr fun hι =>
+    hι.elim isEmptyElim
+
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
 theorem abs_weight_std_le_one (P : Pairing ι) :
