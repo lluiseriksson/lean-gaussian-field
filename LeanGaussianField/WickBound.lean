@@ -151,6 +151,22 @@ theorem weight_std_eq_one_iff_not_nonempty (P : Pairing ι) :
     exact Finset.not_nonempty_iff_eq_empty.mp fun hP =>
       hι ((Pairing.pairs_nonempty_iff_nonempty P).mp hP)
 
+/-- In the standard specification, a Wick weight is the finite-cardinality
+nonempty indicator complement: zero when the index type has positive
+cardinality and one otherwise. -/
+theorem weight_std_eq_if_card_pos (P : Pairing ι) :
+    P.weight (GaussianVectorSpec.std ι).covariance =
+      if 0 < Fintype.card ι then 0 else 1 := by
+  by_cases hcard : 0 < Fintype.card ι
+  · have hι : Nonempty ι := Fintype.card_pos_iff.mp hcard
+    simp [hcard, (weight_std_eq_zero_iff_nonempty P).mpr hι]
+  · have hι : ¬ Nonempty ι := by
+      intro hι
+      exact hcard (Fintype.card_pos_iff.mpr hι)
+    have hone : P.weight (GaussianVectorSpec.std ι).covariance = 1 :=
+      (weight_std_eq_one_iff_not_nonempty P).mpr hι
+    simp [hcard, hone]
+
 /-- In the standard specification, a Wick weight on a nonempty index type
 vanishes. -/
 theorem weight_std_eq_zero_of_index_nonempty (P : Pairing ι) [Nonempty ι] :
@@ -225,6 +241,24 @@ index type. -/
 theorem abs_weight_std_eq_one_of_index_isEmpty (P : Pairing ι) [IsEmpty ι] :
     |P.weight (GaussianVectorSpec.std ι).covariance| = 1 :=
   (abs_weight_std_eq_one_iff_isEmpty P).mpr inferInstance
+
+/-- In the standard specification, the absolute Wick weight is the
+finite-cardinality nonempty indicator complement: zero when the index type has
+positive cardinality and one otherwise. -/
+theorem abs_weight_std_eq_if_card_pos (P : Pairing ι) :
+    |P.weight (GaussianVectorSpec.std ι).covariance| =
+      if 0 < Fintype.card ι then 0 else 1 := by
+  by_cases hcard : 0 < Fintype.card ι
+  · have hι : Nonempty ι := Fintype.card_pos_iff.mp hcard
+    have hzero : P.weight (GaussianVectorSpec.std ι).covariance = 0 :=
+      (weight_std_eq_zero_iff_nonempty P).mpr hι
+    simp [hcard, hzero]
+  · have hι : ¬ Nonempty ι := by
+      intro hι
+      exact hcard (Fintype.card_pos_iff.mpr hι)
+    have hone : P.weight (GaussianVectorSpec.std ι).covariance = 1 :=
+      (weight_std_eq_one_iff_not_nonempty P).mpr hι
+    simp [hcard, hone]
 
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
