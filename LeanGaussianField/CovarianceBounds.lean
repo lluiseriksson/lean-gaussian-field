@@ -166,4 +166,24 @@ noncomputable def GaussianVectorSpec.std (ι : Type*) [Fintype ι] [DecidableEq 
     rw [hdiag]
     exact Finset.sum_nonneg fun i _ => mul_self_nonneg (t i)
 
+variable [DecidableEq ι]
+
+/-- The standard specification is centered. -/
+@[simp] theorem GaussianVectorSpec.std_mean (i : ι) :
+    (GaussianVectorSpec.std ι).mean i = 0 := rfl
+
+/-- The standard specification has identity covariance. -/
+@[simp] theorem GaussianVectorSpec.std_covariance (i j : ι) :
+    (GaussianVectorSpec.std ι).covariance i j = if i = j then 1 else 0 := rfl
+
+/-- The diagonal covariance of the standard specification is one. -/
+@[simp] theorem GaussianVectorSpec.std_covariance_self (i : ι) :
+    (GaussianVectorSpec.std ι).covariance i i = 1 := by
+  simp
+
+/-- Off-diagonal covariance entries of the standard specification vanish. -/
+theorem GaussianVectorSpec.std_covariance_of_ne {i j : ι} (hij : i ≠ j) :
+    (GaussianVectorSpec.std ι).covariance i j = 0 := by
+  simp [hij]
+
 end GaussianField
