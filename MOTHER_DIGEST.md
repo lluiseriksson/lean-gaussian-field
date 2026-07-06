@@ -59,6 +59,7 @@ changes.
 | `GaussianField.weight_std_eq_zero_iff_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes exactly when the index type is nonempty. |
 | `GaussianField.weight_std_eq_one_iff_not_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one exactly when the index type is empty. |
 | `GaussianField.weight_std_eq_if_card_pos` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight as the complement of the positive-cardinality indicator. |
+| `GaussianField.weight_std_eq_zero_iff_card_pos` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes exactly when `0 < Fintype.card ι`. |
 | `GaussianField.weight_std_eq_zero_of_index_nonempty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight vanishes when `[Nonempty ι]` is available. |
 | `GaussianField.weight_std_eq_one_of_index_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one when `[IsEmpty ι]` is available. |
 | `GaussianField.weight_std_eq_one_iff_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight is one exactly when the index type carries an `IsEmpty` witness. |
@@ -69,6 +70,7 @@ changes.
 | `GaussianField.abs_weight_std_eq_one_of_index_isEmpty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight has magnitude one when `[IsEmpty ι]` is available. |
 | `GaussianField.abs_weight_std_eq_if_pairs_empty` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight magnitude as the empty-pairing indicator. |
 | `GaussianField.abs_weight_std_eq_if_card_pos` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight magnitude as the complement of the positive-cardinality indicator. |
+| `GaussianField.abs_weight_std_eq_zero_iff_card_pos` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weight magnitude vanishes exactly when `0 < Fintype.card ι`. |
 | `GaussianField.abs_weight_std_le_one` | `LeanGaussianField/WickBound.lean` | Standard-spec Wick weights are bounded by one. |
 | `GaussianField.quadraticForm_neg` | `LeanGaussianField/CharExponentFacts.lean` | Negating the test vector leaves the covariance quadratic form unchanged. |
 | `GaussianField.GaussianVectorSpec.norm_exp_charExponent_le_one` | `LeanGaussianField/CharExponentFacts.lean` | The target Gaussian characteristic exponential has norm at most one. |
@@ -147,6 +149,8 @@ These are deliberate data fields on `main`, not hidden axioms:
   should be converted directly to emptiness of the index type.  Use
   `weight_std_eq_if_card_pos` when the consumer wants one direct
   positive-cardinality/empty case split without mentioning `P.pairs`.  Use
+  `weight_std_eq_zero_iff_card_pos` when the consumer already tracks
+  `0 < Fintype.card ι` and wants the exact zero-weight equivalence.  Use
   `weight_std_eq_zero_of_index_nonempty` or
   `weight_std_eq_one_of_index_isEmpty` when the index-type instance is already
   in the local context and a direct rewrite is preferable.  Use
@@ -165,7 +169,9 @@ These are deliberate data fields on `main`, not hidden axioms:
   instance is already in context and the consumer wants a direct absolute
   rewrite.  Use `abs_weight_std_eq_if_card_pos` when the consumer wants
   the absolute-value form as a direct positive-cardinality/empty split.  Use
-  `abs_weight_std_le_one` for the uniform absolute-value bound.
+  `abs_weight_std_eq_zero_iff_card_pos` for the cardinality-form vanishing
+  equivalence.  Use `abs_weight_std_le_one` for the uniform absolute-value
+  bound.
 - For one-dimensional realization checks, use
   `GaussianVectorSpec.charFun_realizationOneDim`,
   `GaussianVectorSpec.norm_charFun_realizationOneDim_le_one`,
