@@ -113,6 +113,8 @@ M2 seed (`WickBound.lean`):
   a direct positive-cardinality/empty indicator complement.
 - `weight_std_eq_zero_iff_card_pos`: in the standard specification, zero Wick
   weight is equivalent to positive finite cardinality of the index type.
+- `weight_std_eq_one_iff_card_eq_zero`: in the standard specification, unit
+  Wick weight is equivalent to zero finite cardinality of the index type.
 - `weight_std_eq_zero_of_index_nonempty`,
   `weight_std_eq_one_of_index_isEmpty`: direct instance-based rewrites for
   standard Wick weights on nonempty and empty index types.
@@ -133,6 +135,8 @@ M2 seed (`WickBound.lean`):
   magnitude as a direct positive-cardinality/empty indicator complement.
 - `abs_weight_std_eq_zero_iff_card_pos`: absolute standard Wick weight
   vanishes exactly at positive finite cardinality of the index type.
+- `abs_weight_std_eq_one_iff_card_eq_zero`: absolute standard Wick weight
+  is one exactly at zero finite cardinality of the index type.
 - `abs_weight_std_le_one`: uniform absolute-value bound for standard Wick
   weights.
 

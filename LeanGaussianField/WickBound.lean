@@ -174,6 +174,17 @@ theorem weight_std_eq_zero_iff_card_pos (P : Pairing ι) :
       0 < Fintype.card ι := by
   rw [weight_std_eq_zero_iff_nonempty, Fintype.card_pos_iff]
 
+/-- In the standard specification, a Wick weight is one exactly when the
+finite index type has cardinality zero. -/
+theorem weight_std_eq_one_iff_card_eq_zero (P : Pairing ι) :
+    P.weight (GaussianVectorSpec.std ι).covariance = 1 ↔
+      Fintype.card ι = 0 := by
+  rw [weight_std_eq_if_card_pos]
+  by_cases hcard : 0 < Fintype.card ι
+  · simp [hcard, Nat.ne_of_gt hcard]
+  · have hzero : Fintype.card ι = 0 := Nat.eq_zero_of_not_pos hcard
+    simp [hzero]
+
 /-- In the standard specification, a Wick weight on a nonempty index type
 vanishes. -/
 theorem weight_std_eq_zero_of_index_nonempty (P : Pairing ι) [Nonempty ι] :
@@ -273,6 +284,17 @@ theorem abs_weight_std_eq_zero_iff_card_pos (P : Pairing ι) :
     |P.weight (GaussianVectorSpec.std ι).covariance| = 0 ↔
       0 < Fintype.card ι := by
   rw [abs_weight_std_eq_zero_iff_nonempty, Fintype.card_pos_iff]
+
+/-- In the standard specification, a Wick weight has magnitude one exactly
+when the finite index type has cardinality zero. -/
+theorem abs_weight_std_eq_one_iff_card_eq_zero (P : Pairing ι) :
+    |P.weight (GaussianVectorSpec.std ι).covariance| = 1 ↔
+      Fintype.card ι = 0 := by
+  rw [abs_weight_std_eq_if_card_pos]
+  by_cases hcard : 0 < Fintype.card ι
+  · simp [hcard, Nat.ne_of_gt hcard]
+  · have hzero : Fintype.card ι = 0 := Nat.eq_zero_of_not_pos hcard
+    simp [hzero]
 
 /-- For the standard specification every Wick weight has magnitude at most
 one. -/
