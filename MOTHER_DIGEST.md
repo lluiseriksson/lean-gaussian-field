@@ -40,6 +40,8 @@ changes.
 | `GaussianField.Pairing.card_pairs_eq_card_div_two` | `LeanGaussianField/PairingLemmas.lean` | A pairing has exactly `Fintype.card ι / 2` edges. |
 | `GaussianField.Pairing.pairs_nonempty_iff_nonempty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has at least one edge exactly when the index type is nonempty. |
 | `GaussianField.Pairing.card_pairs_pos_iff_nonempty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has positive edge count exactly when the index type is nonempty. |
+| `GaussianField.Pairing.pairs_nonempty_iff_card_pos` | `LeanGaussianField/PairingLemmas.lean` | A pairing has at least one edge exactly when `0 < Fintype.card ι`. |
+| `GaussianField.Pairing.card_pairs_pos_iff_card_pos` | `LeanGaussianField/PairingLemmas.lean` | A pairing has positive edge count exactly when `0 < Fintype.card ι`. |
 | `GaussianField.Pairing.card_pairs_eq_zero_iff_not_nonempty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has zero edges exactly when the index type is empty. |
 | `GaussianField.Pairing.pairs_empty_iff_isEmpty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has no edges exactly when the index type carries an `IsEmpty` witness. |
 | `GaussianField.Pairing.card_pairs_eq_zero_iff_isEmpty` | `LeanGaussianField/PairingLemmas.lean` | A pairing has zero edge count exactly when the index type carries an `IsEmpty` witness. |
@@ -134,7 +136,10 @@ These are deliberate data fields on `main`, not hidden axioms:
   `Pairing.card_pairs_eq_card_div_two` to rewrite the number of Wick edges as
   half the number of indices.  Use `Pairing.pairs_nonempty_iff_nonempty` when
   a consumer wants to replace pairing nonemptiness by index-type nonemptiness.
-  Use `Pairing.card_pairs_pos_iff_nonempty` or
+  Use `Pairing.pairs_nonempty_iff_card_pos` or
+  `Pairing.card_pairs_pos_iff_card_pos` when the consumer tracks the same
+  condition as `0 < Fintype.card ι`.  Use
+  `Pairing.card_pairs_pos_iff_nonempty` or
   `Pairing.card_pairs_eq_zero_iff_not_nonempty` when the consumer works with
   `P.pairs.card` directly.  Use `Pairing.pairs_empty_iff_isEmpty` or
   `Pairing.card_pairs_eq_zero_iff_isEmpty` when the consumer already has an

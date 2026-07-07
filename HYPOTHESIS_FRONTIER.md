@@ -63,6 +63,8 @@ Pairing layer (`PairingLemmas.lean`):
 - `Pairing.pairs_nonempty_iff_nonempty`: a pairing has an edge exactly when
   the index type is nonempty.
 - `Pairing.card_pairs_pos_iff_nonempty`,
+  `Pairing.pairs_nonempty_iff_card_pos`,
+  `Pairing.card_pairs_pos_iff_card_pos`,
   `Pairing.card_pairs_eq_zero_iff_not_nonempty`: cardinality-form rewrites for
   pairing nonemptiness and emptiness.
 - `Pairing.pairs_empty_iff_isEmpty`,
