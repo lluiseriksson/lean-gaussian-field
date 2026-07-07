@@ -97,6 +97,18 @@ theorem card_pairs_pos_iff_nonempty [Fintype ι] (P : Pairing ι) :
     0 < P.pairs.card ↔ Nonempty ι := by
   rw [Finset.card_pos, pairs_nonempty_iff_nonempty]
 
+/-- A pairing has an edge exactly when the finite index type has positive
+cardinality. -/
+theorem pairs_nonempty_iff_card_pos [Fintype ι] (P : Pairing ι) :
+    P.pairs.Nonempty ↔ 0 < Fintype.card ι := by
+  rw [pairs_nonempty_iff_nonempty, ← Fintype.card_pos_iff]
+
+/-- A pairing has positive edge count exactly when the finite index type has
+positive cardinality. -/
+theorem card_pairs_pos_iff_card_pos [Fintype ι] (P : Pairing ι) :
+    0 < P.pairs.card ↔ 0 < Fintype.card ι := by
+  rw [card_pairs_pos_iff_nonempty, ← Fintype.card_pos_iff]
+
 /-- A pairing has zero edges exactly when the indexed type is empty. -/
 theorem card_pairs_eq_zero_iff_not_nonempty [Fintype ι] (P : Pairing ι) :
     P.pairs.card = 0 ↔ ¬ Nonempty ι := by
