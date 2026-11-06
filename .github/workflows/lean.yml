@@ -14,6 +14,8 @@ jobs:
           use-github-cache: true
       - name: Gaussian law semantic regressions
         run: lake env lean -j1 ContractChecks.lean
+      - name: Finite Gaussian existence regressions
+        run: lake env lean -j1 ExistenceChecks.lean
       - name: No Lean placeholders on main
         if: github.ref == 'refs/heads/main'
         run: |

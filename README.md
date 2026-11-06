@@ -57,7 +57,8 @@ did not constrain the measure, so its witnesses cannot be converted automaticall
 `HasGaussianVectorLaw.ext hμ hν` now proves equality of measures directly from
 Mathlib characteristic-function uniqueness. The covariance assumption remains PSD,
 allowing singular cases; `HasGaussianVectorLaw.zero_dirac` realizes zero covariance.
-General PSD realization and the moment/Isserlis bridge remain open. The existing
+General PSD realization is now proved by `exists_gaussian_law`; the moment/Isserlis
+bridge remains open. The existing
 one-dimensional realization is unchanged. See [the migration table](INTERFACES.md)
 for field and call-site changes; external consumers have not been inspected.
 
@@ -71,4 +72,30 @@ CI runs this check after the library build. It accepts the degenerate Dirac-zero
 law and rejects both the zero measure and a wrong-mean probability Dirac law.
 It also reports the axioms of the coordinate identity, uniqueness and singular
 realization proofs. The existing scheduled/manual heartbeat remains separate;
-contract-only changes use the Lean workflow without the heartbeat's parent lookup.
+contract and realization changes use the Lean workflow without the heartbeat's parent lookup.
+
+## Finite PSD realization (6 November 2026)
+
+`GaussianField.exists_gaussian_law spec` constructs a probability measure satisfying
+`HasGaussianVectorLaw spec` for every specification on a finite index type
+`[Fintype ι] [DecidableEq ι]`. `RealizationFinite.lean` maps independent standard real
+Gaussians through the PSD matrix square root and translates by `spec.mean`.
+The coordinate Gram identity identifies the resulting dual characteristic function
+with `exp (charExponent)`. No positive-definiteness, density, inverse, or nonempty
+index assumption is used. This is a standard finite-dimensional construction.
+
+The theorem is exported by both existing import barrels. Existing contract,
+one-dimensional and Wick declarations are unchanged; external consumers and frontier
+branches have not been inspected or migrated. Existence does not identify the
+arbitrary moment functional in `IsserlisInterface` with measure integrals or prove
+integrability, Isserlis, dimension-uniform moments, or infinite-field statements.
+
+After `lake build`, CI also runs:
+
+```sh
+lake env lean -j1 ExistenceChecks.lean
+```
+
+This checks the public `Interfaces` import, a nonzero rank-one covariance with a
+nonzero mean and an explicit kernel, and an arbitrary specification on `Fin 0`.
+The library and checks report proof axioms; only the standard Lean axioms are used.

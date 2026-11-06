@@ -6,6 +6,7 @@ import LeanGaussianField.CharExponentFacts
 import LeanGaussianField.WickBound
 import LeanGaussianField.Interfaces
 import LeanGaussianField.RealizationOneDim
+import LeanGaussianField.RealizationFinite
 
 /-!
 # Parent compatibility barrel

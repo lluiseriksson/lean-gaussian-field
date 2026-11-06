@@ -15,9 +15,9 @@ Branch: `main`
   supplied with a positive-semidefinite proof.
 - `GaussianField.HasGaussianVectorLaw.probability` and `characteristic_eq`:
   witnesses must supply a probability measure whose actual `charFunDual` equals
-  `exp (charExponent)` for every continuous real linear functional. Arbitrary PSD
-  realization remains an existence obligation; no independent characteristic
-  function may be supplied.
+  `exp (charExponent)` for every continuous real linear functional. `exists_gaussian_law`
+  now supplies such a witness for every finite PSD specification; no independent
+  characteristic function may be supplied.
 - The former `HasGaussianVectorLaw.Uniqueness` hypothesis is removed. Uniqueness
   is now proved from the actual characteristic function. This is a breaking
   signature correction; see `INTERFACES.md` for migration requirements.
@@ -31,6 +31,17 @@ Branch: `main`
   decay profile, and decay estimate are explicit data.
 
 ## Closed facts on `main`
+
+Finite PSD realization (6 November 2026):
+
+- `exists_gaussian_law`: a probability realizing every finite PSD specification,
+  including singular covariance and an empty index type, with the actual dual
+  characteristic function.
+- `exists_law_of_factor`: realization from an explicit matrix Gram factor.
+- `ExistenceChecks.lean`: nonzero rank-one covariance, nonzero mean, explicit
+  kernel and `Fin 0`, through the public import.
+- The construction uses a PSD square root and a linear image of standard Gaussian
+  product measure; no PD, density or inverse assumption.
 
 Gaussian-law contract correction (6 November 2026):
 
@@ -166,9 +177,10 @@ M2 seed (`WickBound.lean`):
 
 ## Frontier obligations (branch `frontier/M1`, statement-first, sorried)
 
-- `exists_gaussian_realization`: construction of the law from arbitrary PSD
-  covariance, via Mathlib `isGaussian_iff_gaussian_charFun` (see
-  MATHLIB_AUDIT.md).
+- The historical `exists_gaussian_realization` statement on `frontier/M1` is not
+  migrated here. On `main`, `exists_gaussian_law` now proves arbitrary finite PSD
+  existence for the repaired contract. No compatibility of that old statement
+  with the repaired signature is inferred.
 - `isserlis_of_realization`: Wick/Isserlis over `Fintype (Pairing ι)`.
 - `integral_prod_eq_zero_of_odd`: vanishing odd moments (consumer test).
 - `card_pairing_fin`: #pairings of 2n points = (2n-1)!!.
@@ -181,8 +193,9 @@ M2 seed (`WickBound.lean`):
 
 The dimension-uniform control chain diagonal → Cauchy-Schwarz → Wick-weight
 bound is now proved unconditionally.  What separates `main` from closing M1 is
-purely the analytic realization block (existence of the law and the
-differentiation-of-characteristic-function argument for Isserlis); the
+the analytic moment bridge: integrability, identification of the moment
+functional with actual integrals, and the Isserlis argument. Finite PSD existence
+is now proved separately; the
 combinatorial side (finiteness of pairings, parity, counting up to the
 (2n-1)!! identity) is done or reduced to `card_pairing_fin`.
 
@@ -210,7 +223,8 @@ combinatorial side (finiteness of pairings, parity, counting up to the
   function, including the realized zero-specification case.
 - `exists_realization_fin_one`: smallest-case discharge of the M1
   realization pattern. The general `exists_gaussian_realization`
-  (product measures + PSD square root) remains on `frontier/M1`.
+  (product measures + PSD square root) was then on `frontier/M1`; its main-contract
+  counterpart is now proved as `exists_gaussian_law`.
 - `exists_realization_fin_one_norm_le_one`: same one-dimensional realized-law
   witness with the characteristic-function identity and norm bound packaged
   together for consumers.
