@@ -8,7 +8,8 @@ import Interfaces
 
 This compatibility barrel re-exports the closed fact modules listed in
 `MOTHER_DIGEST.md`, so those facts are available from the same parent import.
-The conditional interface names below remain the stable parent-facing API.
+The import module name is unchanged; the Gaussian-law API below has a breaking
+semantic correction dated 6 November 2026. Other interfaces retain their boundaries.
 
 Breaking changes are any changes to the names or types below.
 
@@ -18,14 +19,45 @@ Breaking changes are any changes to the names or types below.
 GaussianField.GaussianVectorSpec
 GaussianField.GaussianVectorSpec.charExponent
 GaussianField.HasGaussianVectorLaw
-GaussianField.HasGaussianVectorLaw.Uniqueness
+GaussianField.dualCoordinates
+GaussianField.dualCoordinates_apply
+GaussianField.HasGaussianVectorLaw.zero_dirac
 GaussianField.HasGaussianVectorLaw.ext
 ```
 
-`HasGaussianVectorLaw` is conditional: a supplied measure and supplied
-characteristic exponent are related to
-`i <t,m> - (1/2) t C t`.  The exponential form and identification with
-Mathlib's `charFun` are frontier work, not claimed on `main`.
+`HasGaussianVectorLaw spec μ` uses the canonical Borel measurable structure on
+the finite real product. Its fields are `probability : IsProbabilityMeasure μ`
+and `characteristic_eq`, asserting, for every `L : StrongDual ℝ (ι → ℝ)`,
+
+```text
+charFunDual μ L = Complex.exp (spec.charExponent (dualCoordinates L))
+dualCoordinates L i = L (Pi.single i 1)
+```
+
+`dualCoordinates_apply` proves `L x = ∑ i, dualCoordinates L i * x i`, identifying
+this convention with the existing coordinate exponent. `ext hμ hν` is proved
+using `Measure.ext_of_charFunDual`; it takes no external uniqueness assumption.
+The `probability` field supplies finiteness. No density or positive-definiteness
+is required. The zero-covariance witness is proved; arbitrary PSD existence is
+still a separate obligation.
+
+### Breaking migration
+
+| Previous API | Current API / obligation |
+| --- | --- |
+| `HasGaussianVectorLaw spec μ χ` | `HasGaussianVectorLaw spec μ`; remove the independent `χ`. |
+| `characteristic_exponent_eq` | Supply `probability` and `characteristic_eq` for the actual measure, with `exp`. |
+| Arbitrary measurable structure on `ι → ℝ` | Canonical finite-product Borel structure. |
+| `HasGaussianVectorLaw.Uniqueness spec` | Removed; uniqueness is proved, not caller data. |
+| `HasGaussianVectorLaw.ext hUnique hμ hν` | `HasGaussianVectorLaw.ext hμ hν`. |
+
+There is no automatic migration of old law witnesses: they contained no constraint
+on `μ`. All internal uses of the removed predicate arguments and uniqueness
+structure were confined to `GaussianVector.lean` and were migrated there. Both
+import barrels and all other library Lean files are unchanged. External consumers,
+including the parent repository and frontier branches, have not been migrated or
+certified compatible. This correction does not close Wick/Isserlis or general
+finite-dimensional existence.
 
 ## Isserlis
 

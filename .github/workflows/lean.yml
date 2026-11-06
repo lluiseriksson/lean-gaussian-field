@@ -12,6 +12,8 @@ jobs:
       - uses: leanprover/lean-action@v1
         with:
           use-github-cache: true
+      - name: Gaussian law semantic regressions
+        run: lake env lean -j1 ContractChecks.lean
       - name: No Lean placeholders on main
         if: github.ref == 'refs/heads/main'
         run: |

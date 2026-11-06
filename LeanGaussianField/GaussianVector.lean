@@ -1,13 +1,13 @@
 import Mathlib.Algebra.BigOperators.Fin
 import Mathlib.Data.Complex.Basic
-import Mathlib.MeasureTheory.Measure.MeasureSpace
+import Mathlib.MeasureTheory.Measure.CharacteristicFunction.Basic
 
 /-!
 # Finite-dimensional Gaussian specifications
 
-This file records finite-dimensional Gaussian laws through their characteristic
-function.  Existence and identification with Mathlib's characteristic function
-are not asserted here; realizations are carried explicitly.
+This file specifies finite-dimensional Gaussian probability laws using Mathlib's
+actual dual characteristic function. Uniqueness is proved below. General existence
+is not asserted; the zero-covariance Dirac realization is checked explicitly.
 -/
 
 open scoped BigOperators
@@ -83,39 +83,55 @@ theorem charExponent_zero_spec (t : ι → ℝ) :
 
 end GaussianVectorSpec
 
-/-- A measure realizes a finite-dimensional Gaussian specification.
+/-- Coordinates of a continuous real linear functional in the standard finite basis. -/
+noncomputable def dualCoordinates [Fintype ι]
+    (L : StrongDual ℝ (ι → ℝ)) : ι → ℝ := by
+  classical
+  exact fun i => L (Pi.single i 1)
 
-Reference: Kallenberg, 2002, Theorem 5.3, p. 87, for uniqueness of probability
-laws from characteristic functions.  The actual identification with Mathlib's
-`charFun` is a future theorem; for now the characteristic function is supplied
-as explicit data.
--/
-structure HasGaussianVectorLaw [Fintype ι] [MeasurableSpace (ι → ℝ)]
-    (spec : GaussianVectorSpec ι) (μ : Measure (ι → ℝ))
-    (characteristic : (ι → ℝ) → ℂ) : Prop where
-  characteristic_exponent_eq :
-    ∀ t : ι → ℝ, characteristic t = spec.charExponent t
+/-- The dual convention is exactly the finite dot-product convention. -/
+theorem dualCoordinates_apply [Fintype ι] (L : StrongDual ℝ (ι → ℝ)) (x : ι → ℝ) :
+    L x = ∑ i, dualCoordinates L i * x i := by
+  classical
+  have hx : (∑ i, x i • (Pi.single i (1 : ℝ) : ι → ℝ)) = x := by
+    ext j
+    simp [Pi.single_apply]
+  calc
+    L x = L (∑ i, x i • (Pi.single i (1 : ℝ) : ι → ℝ)) := congrArg L hx.symm
+    _ = ∑ i, dualCoordinates L i * x i := by
+      simp [dualCoordinates, map_sum, map_smul, mul_comm]
+
+/-- A probability measure realizes the specification when its actual characteristic
+function is the exponential of the specified exponent. PSD, including singular
+covariances, remains the only covariance assumption in GaussianVectorSpec. -/
+structure HasGaussianVectorLaw [Fintype ι]
+    (spec : GaussianVectorSpec ι) (μ : Measure (ι → ℝ)) : Prop where
+  probability : IsProbabilityMeasure μ
+  characteristic_eq : ∀ L : StrongDual ℝ (ι → ℝ),
+    charFunDual μ L = Complex.exp (spec.charExponent (dualCoordinates L))
 
 namespace HasGaussianVectorLaw
 
 variable [Fintype ι]
 
-/-- Explicit uniqueness hypothesis for realized finite-dimensional Gaussian laws.
-
-This is a frontier hypothesis on `main`, not an axiom.
--/
-structure Uniqueness [MeasurableSpace (ι → ℝ)] (spec : GaussianVectorSpec ι) : Prop where
-  eq_of_hasGaussianVectorLaw :
-    ∀ {μ ν : Measure (ι → ℝ)} {χμ χν : (ι → ℝ) → ℂ},
-      HasGaussianVectorLaw spec μ χμ → HasGaussianVectorLaw spec ν χν → μ = ν
-
-/-- Uniqueness wrapper, conditional on `HasGaussianVectorLaw.Uniqueness`. -/
-protected theorem ext [MeasurableSpace (ι → ℝ)] {spec : GaussianVectorSpec ι}
-    (h : Uniqueness spec) {μ ν : Measure (ι → ℝ)}
-    {χμ χν : (ι → ℝ) → ℂ}
-    (hμ : HasGaussianVectorLaw spec μ χμ) (hν : HasGaussianVectorLaw spec ν χν) :
+/-- Actual uniqueness of finite Gaussian probability laws; no external uniqueness
+hypothesis or supplied characteristic-function surrogate is used. -/
+protected theorem ext {spec : GaussianVectorSpec ι} {μ ν : Measure (ι → ℝ)}
+    (hμ : HasGaussianVectorLaw spec μ) (hν : HasGaussianVectorLaw spec ν) :
     μ = ν := by
-  exact h.eq_of_hasGaussianVectorLaw hμ hν
+  letI := hμ.probability
+  letI := hν.probability
+  apply Measure.ext_of_charFunDual
+  funext L
+  exact (hμ.characteristic_eq L).trans (hν.characteristic_eq L).symm
+
+/-- The singular zero-covariance case is admitted by the repaired contract. -/
+theorem zero_dirac :
+    HasGaussianVectorLaw (GaussianVectorSpec.zero ι) (Measure.dirac (0 : ι → ℝ)) := by
+  constructor
+  · infer_instance
+  · intro L
+    simp [charFunDual_dirac]
 
 end HasGaussianVectorLaw
 

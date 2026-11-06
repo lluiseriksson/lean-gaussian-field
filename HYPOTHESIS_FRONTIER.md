@@ -13,11 +13,14 @@ Branch: `main`
 
 - `GaussianField.GaussianVectorSpec.covariance_psd`: covariance data must be
   supplied with a positive-semidefinite proof.
-- `GaussianField.HasGaussianVectorLaw.characteristic_exponent_eq`:
-  existence/realization of the finite-dimensional Gaussian law, and its
-  identification with the target characteristic exponent, are explicit data.
-- `GaussianField.HasGaussianVectorLaw.Uniqueness.eq_of_hasGaussianVectorLaw`:
-  uniqueness of realized Gaussian vector laws is an explicit hypothesis.
+- `GaussianField.HasGaussianVectorLaw.probability` and `characteristic_eq`:
+  witnesses must supply a probability measure whose actual `charFunDual` equals
+  `exp (charExponent)` for every continuous real linear functional. Arbitrary PSD
+  realization remains an existence obligation; no independent characteristic
+  function may be supplied.
+- The former `HasGaussianVectorLaw.Uniqueness` hypothesis is removed. Uniqueness
+  is now proved from the actual characteristic function. This is a breaking
+  signature correction; see `INTERFACES.md` for migration requirements.
 - `GaussianField.IsserlisInterface.isserlis`: the Wick/Isserlis moment identity
   is not yet proved in `main`; the moment functional is explicit data.
 - `GaussianField.UniformMomentBoundInterface.coordinate_moment_le`: uniform
@@ -28,6 +31,15 @@ Branch: `main`
   decay profile, and decay estimate are explicit data.
 
 ## Closed facts on `main`
+
+Gaussian-law contract correction (6 November 2026):
+
+- `dualCoordinates_apply`: identifies the continuous-dual and coordinate conventions.
+- `HasGaussianVectorLaw.ext`: uniqueness of two actual probability-law witnesses.
+- `HasGaussianVectorLaw.zero_dirac`: singular zero-covariance realization.
+- `ContractChecks.lean`: rejects the zero measure and a wrong-mean Dirac probability
+  law. This does not prove existence for arbitrary PSD covariance or identify the
+  Isserlis interface with integrals.
 
 M0 layer (previous iteration):
 

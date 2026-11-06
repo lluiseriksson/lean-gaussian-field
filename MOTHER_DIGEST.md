@@ -1,6 +1,6 @@
 # Mother-facing digest
 
-Date: 2026-07-06
+Date: 2026-11-06 (Gaussian-law contract correction; other fact listings retained)
 
 This digest records the current Lean names that the parent repository can
 consume without importing frontier branches.  It is a routing note, not a
@@ -20,10 +20,24 @@ the conditional interfaces.  Public interface names are tracked in
 `INTERFACES.md`; changes to those names or types should be treated as interface
 changes.
 
+## Breaking Gaussian-law migration
+
+`HasGaussianVectorLaw` now takes only `spec` and `μ`, on the canonical Borel
+finite real product. Supply probability normalization and the actual dual
+characteristic-function identity with `exp`; a free supplied function is no
+longer accepted. The external `Uniqueness` structure is removed, and
+`HasGaussianVectorLaw.ext hμ hν` proves measure equality. Old witnesses cannot be
+converted without proving the new fields. See `INTERFACES.md` for the full table.
+No external parent consumer or frontier branch has been inspected or migrated;
+the unchanged import barrel does not imply unchanged declaration types.
+
 ## Closed Lean facts on main
 
 | Name | File | What it supplies |
 | --- | --- | --- |
+| `GaussianField.dualCoordinates_apply` | `LeanGaussianField/GaussianVector.lean` | Finite coordinate representation of a continuous real linear functional. |
+| `GaussianField.HasGaussianVectorLaw.ext` | `LeanGaussianField/GaussianVector.lean` | Actual measure uniqueness from the repaired characteristic-function contract. |
+| `GaussianField.HasGaussianVectorLaw.zero_dirac` | `LeanGaussianField/GaussianVector.lean` | Zero-covariance Dirac realization; no PD assumption. |
 | `GaussianField.GaussianVectorSpec.charExponent_zero_arg` | `LeanGaussianField/GaussianVector.lean` | The target characteristic exponent vanishes at the zero test vector. |
 | `GaussianField.GaussianVectorSpec.charExponent_zero_spec` | `LeanGaussianField/GaussianVector.lean` | The zero mean/covariance specification has identically zero exponent. |
 | `GaussianField.GaussianVectorSpec.diag_nonneg` | `LeanGaussianField/CovarianceBounds.lean` | Positive semidefinite covariance implies nonnegative diagonal entries. |
@@ -111,8 +125,7 @@ These are deliberate data fields on `main`, not hidden axioms:
 
 | Name | File | Hypothesis boundary |
 | --- | --- | --- |
-| `GaussianField.HasGaussianVectorLaw.characteristic_exponent_eq` | `LeanGaussianField/GaussianVector.lean` | A supplied characteristic function matches `spec.charExponent`. |
-| `GaussianField.HasGaussianVectorLaw.Uniqueness.eq_of_hasGaussianVectorLaw` | `LeanGaussianField/GaussianVector.lean` | Uniqueness of realized laws from the supplied Gaussian-law witness. |
+| `GaussianField.HasGaussianVectorLaw.probability` / `characteristic_eq` | `LeanGaussianField/GaussianVector.lean` | A probability measure has the prescribed actual dual characteristic function; general PSD existence remains open. |
 | `GaussianField.IsserlisInterface.isserlis` | `LeanGaussianField/Interfaces.lean` | Wick/Isserlis moment identity is supplied as interface data. |
 | `GaussianField.UniformMomentBoundInterface.coordinate_moment_le` | `LeanGaussianField/Interfaces.lean` | Coordinate moment bounds are supplied for each finite family. |
 | `GaussianField.LatticeCovarianceDecayInterface.decay` | `LeanGaussianField/Interfaces.lean` | Finite-lattice covariance decay is supplied as explicit data. |
