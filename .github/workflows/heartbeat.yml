@@ -3,8 +3,28 @@ on:
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch:
-  push: { branches: [main] }
+  # Contract-only changes are covered by lean.yml, without the parent lookup.
+  push:
+    branches: [main]
+    paths-ignore:
+      - LeanGaussianField/GaussianVector.lean
+      - ContractChecks.lean
+      - README.md
+      - INTERFACES.md
+      - HYPOTHESIS_FRONTIER.md
+      - MOTHER_DIGEST.md
+      - .github/workflows/lean.yml
+      - .github/workflows/heartbeat.yml
   pull_request:
+    paths-ignore:
+      - LeanGaussianField/GaussianVector.lean
+      - ContractChecks.lean
+      - README.md
+      - INTERFACES.md
+      - HYPOTHESIS_FRONTIER.md
+      - MOTHER_DIGEST.md
+      - .github/workflows/lean.yml
+      - .github/workflows/heartbeat.yml
 
 permissions: { contents: write, issues: write }
 
