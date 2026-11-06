@@ -167,6 +167,18 @@ theorem weight_std_eq_if_card_pos (P : Pairing ι) :
       (weight_std_eq_one_iff_not_nonempty P).mpr hι
     simp [hcard, hone]
 
+/-- In the standard specification, a Wick weight is the finite-cardinality
+zero indicator: one when the index type has cardinality zero and zero
+otherwise. -/
+theorem weight_std_eq_if_card_eq_zero (P : Pairing ι) :
+    P.weight (GaussianVectorSpec.std ι).covariance =
+      if Fintype.card ι = 0 then 1 else 0 := by
+  rw [weight_std_eq_if_card_pos]
+  by_cases hcard : Fintype.card ι = 0
+  · simp [hcard]
+  · have hpos : 0 < Fintype.card ι := Nat.pos_of_ne_zero hcard
+    simp [hcard, hpos]
+
 /-- In the standard specification, a Wick weight vanishes exactly when the
 finite index type has positive cardinality. -/
 theorem weight_std_eq_zero_iff_card_pos (P : Pairing ι) :
@@ -292,6 +304,18 @@ theorem abs_weight_std_eq_if_card_pos (P : Pairing ι) :
     have hone : P.weight (GaussianVectorSpec.std ι).covariance = 1 :=
       (weight_std_eq_one_iff_not_nonempty P).mpr hι
     simp [hcard, hone]
+
+/-- In the standard specification, a Wick weight magnitude is the
+finite-cardinality zero indicator: one when the index type has cardinality
+zero and zero otherwise. -/
+theorem abs_weight_std_eq_if_card_eq_zero (P : Pairing ι) :
+    |P.weight (GaussianVectorSpec.std ι).covariance| =
+      if Fintype.card ι = 0 then 1 else 0 := by
+  rw [abs_weight_std_eq_if_card_pos]
+  by_cases hcard : Fintype.card ι = 0
+  · simp [hcard]
+  · have hpos : 0 < Fintype.card ι := Nat.pos_of_ne_zero hcard
+    simp [hcard, hpos]
 
 /-- In the standard specification, a Wick weight has magnitude zero exactly
 when the finite index type has positive cardinality. -/
