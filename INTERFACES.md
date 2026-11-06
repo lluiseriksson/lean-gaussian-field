@@ -23,6 +23,8 @@ GaussianField.dualCoordinates
 GaussianField.dualCoordinates_apply
 GaussianField.HasGaussianVectorLaw.zero_dirac
 GaussianField.HasGaussianVectorLaw.ext
+GaussianField.exists_gaussian_law
+GaussianField.exists_law_of_factor
 ```
 
 `HasGaussianVectorLaw spec μ` uses the canonical Borel measurable structure on
@@ -38,8 +40,12 @@ dualCoordinates L i = L (Pi.single i 1)
 this convention with the existing coordinate exponent. `ext hμ hν` is proved
 using `Measure.ext_of_charFunDual`; it takes no external uniqueness assumption.
 The `probability` field supplies finiteness. No density or positive-definiteness
-is required. The zero-covariance witness is proved; arbitrary PSD existence is
-still a separate obligation.
+is required. Arbitrary PSD existence is proved in `RealizationFinite.lean`:
+`exists_gaussian_law (spec : GaussianVectorSpec ι) : ∃ μ, HasGaussianVectorLaw spec μ`
+under `[Fintype ι] [DecidableEq ι]`. Singular covariance and the empty index type
+are included. `exists_law_of_factor spec B hB` accepts an explicit factor with
+`hB : B * B.transpose = spec.covariance`; the general theorem constructs this
+factor using the PSD square root. No additional analytic hypothesis is required.
 
 ### Breaking migration
 
@@ -53,11 +59,13 @@ still a separate obligation.
 
 There is no automatic migration of old law witnesses: they contained no constraint
 on `μ`. All internal uses of the removed predicate arguments and uniqueness
-structure were confined to `GaussianVector.lean` and were migrated there. Both
-import barrels and all other library Lean files are unchanged. External consumers,
+structure were confined to `GaussianVector.lean` and were migrated there. That correction left both
+import barrels and all other library Lean files unchanged. The subsequent finite
+PSD realization adds `RealizationFinite` to both barrels without changing the
+existing contract, one-dimensional realization or Wick declarations. External consumers,
 including the parent repository and frontier branches, have not been migrated or
-certified compatible. This correction does not close Wick/Isserlis or general
-finite-dimensional existence.
+certified compatible. The contract correction alone did not close finite-dimensional existence;
+`exists_gaussian_law` now supplies that separate result. Wick/Isserlis remains open.
 
 ## Isserlis
 

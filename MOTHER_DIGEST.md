@@ -1,6 +1,6 @@
 # Mother-facing digest
 
-Date: 2026-11-06 (Gaussian-law contract correction; other fact listings retained)
+Date: 2026-11-06 (Gaussian-law contract and finite PSD realization; other fact listings retained)
 
 This digest records the current Lean names that the parent repository can
 consume without importing frontier branches.  It is a routing note, not a
@@ -29,12 +29,16 @@ longer accepted. The external `Uniqueness` structure is removed, and
 `HasGaussianVectorLaw.ext hμ hν` proves measure equality. Old witnesses cannot be
 converted without proving the new fields. See `INTERFACES.md` for the full table.
 No external parent consumer or frontier branch has been inspected or migrated;
-the unchanged import barrel does not imply unchanged declaration types.
+the unchanged import module name does not imply unchanged declaration types.
+The subsequent finite PSD realization adds a module export; existing declarations
+are preserved. No parent code was inspected or changed.
 
 ## Closed Lean facts on main
 
 | Name | File | What it supplies |
 | --- | --- | --- |
+| `GaussianField.exists_gaussian_law` | `LeanGaussianField/RealizationFinite.lean` | Probability-law existence for every finite PSD specification, including singular covariance and an empty index; `[Fintype ι] [DecidableEq ι]`. |
+| `GaussianField.exists_law_of_factor` | `LeanGaussianField/RealizationFinite.lean` | Existence from `B * B.transpose = spec.covariance`, using a linear image and translation of a standard Gaussian product. |
 | `GaussianField.dualCoordinates_apply` | `LeanGaussianField/GaussianVector.lean` | Finite coordinate representation of a continuous real linear functional. |
 | `GaussianField.HasGaussianVectorLaw.ext` | `LeanGaussianField/GaussianVector.lean` | Actual measure uniqueness from the repaired characteristic-function contract. |
 | `GaussianField.HasGaussianVectorLaw.zero_dirac` | `LeanGaussianField/GaussianVector.lean` | Zero-covariance Dirac realization; no PD assumption. |
@@ -125,12 +129,18 @@ These are deliberate data fields on `main`, not hidden axioms:
 
 | Name | File | Hypothesis boundary |
 | --- | --- | --- |
-| `GaussianField.HasGaussianVectorLaw.probability` / `characteristic_eq` | `LeanGaussianField/GaussianVector.lean` | A probability measure has the prescribed actual dual characteristic function; general PSD existence remains open. |
+| `GaussianField.HasGaussianVectorLaw.probability` / `characteristic_eq` | `LeanGaussianField/GaussianVector.lean` | A probability measure has the prescribed actual dual characteristic function; finite PSD existence is supplied by `exists_gaussian_law`; no moment identity follows. |
 | `GaussianField.IsserlisInterface.isserlis` | `LeanGaussianField/Interfaces.lean` | Wick/Isserlis moment identity is supplied as interface data. |
 | `GaussianField.UniformMomentBoundInterface.coordinate_moment_le` | `LeanGaussianField/Interfaces.lean` | Coordinate moment bounds are supplied for each finite family. |
 | `GaussianField.LatticeCovarianceDecayInterface.decay` | `LeanGaussianField/Interfaces.lean` | Finite-lattice covariance decay is supplied as explicit data. |
 
 ## Consumption notes
+
+- For finite PSD existence, use `exists_gaussian_law spec` to obtain an actual
+  probability-law witness. The matrix square root may be singular, and the
+  finite index may be empty. `HasGaussianVectorLaw.ext` supplies uniqueness.
+  Isserlis/integrability and dimension-uniform moment bounds remain separate
+  obligations; the moment interface is not discharged by existence alone.
 
 - For small-field covariance bookkeeping, prefer
   `GaussianVectorSpec.diag_nonneg`, `GaussianVectorSpec.abs_covariance_le`,

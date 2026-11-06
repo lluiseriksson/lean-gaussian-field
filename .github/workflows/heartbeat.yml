@@ -3,12 +3,16 @@ on:
   schedule:
     - cron: '17 * * * *'
   workflow_dispatch:
-  # Contract-only changes are covered by lean.yml, without the parent lookup.
+  # Gaussian contract and realization changes are covered by lean.yml, without the parent lookup.
   push:
     branches: [main]
     paths-ignore:
       - LeanGaussianField/GaussianVector.lean
       - ContractChecks.lean
+      - ExistenceChecks.lean
+      - LeanGaussianField/RealizationFinite.lean
+      - LeanGaussianField.lean
+      - Interfaces.lean
       - README.md
       - INTERFACES.md
       - HYPOTHESIS_FRONTIER.md
@@ -19,6 +23,10 @@ on:
     paths-ignore:
       - LeanGaussianField/GaussianVector.lean
       - ContractChecks.lean
+      - ExistenceChecks.lean
+      - LeanGaussianField/RealizationFinite.lean
+      - LeanGaussianField.lean
+      - Interfaces.lean
       - README.md
       - INTERFACES.md
       - HYPOTHESIS_FRONTIER.md
